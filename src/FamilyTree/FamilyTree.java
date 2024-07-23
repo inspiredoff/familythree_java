@@ -100,19 +100,48 @@ public class FamilyTree {
             if (mother != null) {
                 mother.setChildren(children);
             }
-//            father.setChildren(children);
-//            mother.setChildren(children);
             addHuman(children);
         } else {
             System.out.println("Parent not found");
         }
     }
 
+    public void setParent(int human_id, int father_id, int mother_id) {
+        Human human = getHuman(human_id);
+        if (human != null) {
+            Human father = getHuman(father_id);
+            Human mother = getHuman(mother_id);
+            if (father != null) {
+                human.setFather(father);
+                father.setChildren(human);
+            }
+            if (mother != null) {
+                human.setMother(mother);
+                mother.setChildren(human);
+            }
+        }
+    }
+
+
     public void printFamilyTree() {
         for (Human human : humans) {
             System.out.println(human);
         }
     }
+
+    public int getgrandMother(int human_id) {
+        Human human = getHuman(human_id);
+        if (human != null) {
+            Human mother = human.getMother();
+            if (mother != null) {
+                Human grandMother = mother.getMother();
+                if (grandMother != null) {
+                    return grandMother.getHumanId();
+                }
+            }
+        }
+        return -1;
+        }
 
     public void printHuman(int human_id) {
         for (Human human : humans) {
