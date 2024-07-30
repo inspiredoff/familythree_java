@@ -46,6 +46,10 @@ public class Events {
         return places;
     }
 
+    public void setPlaces(Place...places) {
+        this.places = List.of(places);
+    }
+
     public void setPlaces(List<Place> places) {
         this.places = places;
     }

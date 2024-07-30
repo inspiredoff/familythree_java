@@ -9,19 +9,12 @@ import java.util.List;
 public class FamilyTree {
     private int id;
     private String familyTreeName;
-    private int human_id = 0;
     private List<Human>humans;
 
     public FamilyTree(int id, String familyTreeName) {
         this.id = id;
         this.familyTreeName = familyTreeName;
         humans = new ArrayList<>();
-    }
-
-    private void addHuman(Human human) {
-        human.setHumanId(human_id);
-        human_id++;
-        humans.add(human);
     }
 
     public Human getHuman(int human_id) {
@@ -32,6 +25,14 @@ public class FamilyTree {
         }
         System.out.println("Human not found");
         return null;
+    }
+
+    public List<Human> getHumanList() {
+        return humans;
+    }
+
+    public void addHuman(Human human) {
+        humans.add(human);
     }
 
     public void deleteHuman(int human_id) {
@@ -54,81 +55,6 @@ public class FamilyTree {
 
     }
 
-    public
-    void createHuman(
-            String first_name,
-            String last_name,
-            String family_name,
-            LocalDate birth_date,
-            LocalDate death_date,
-            Human.gender gender
-    ) {
-        Human human = new Human(first_name, last_name, family_name, birth_date, death_date, gender);
-        addHuman(human);
-    }
-    public void createChildren(
-            String first_name,
-            String last_name,
-            String family_name,
-            LocalDate birth_date,
-            LocalDate death_date,
-            Human.gender gender,
-            int father_id,
-            int mother_id) {
-        Human father = null;
-        Human mother = null;
-        for (Human human : humans) {
-            if (human.getHumanId() == father_id) {
-                father = human;
-            } else if (human.getHumanId() == mother_id) {
-                mother = human;
-            }
-        }
-        if (father != null || mother != null) {
-            Human children = new Human(
-                    first_name,
-                    last_name,
-                    family_name,
-                    birth_date,
-                    death_date,
-                    gender,
-                    father,
-                    mother);
-            if (father != null) {
-                father.setChildren(children);
-            }
-            if (mother != null) {
-                mother.setChildren(children);
-            }
-            addHuman(children);
-        } else {
-            System.out.println("Parent not found");
-        }
-    }
-
-    public void setParent(int human_id, int father_id, int mother_id) {
-        Human human = getHuman(human_id);
-        if (human != null) {
-            Human father = getHuman(father_id);
-            Human mother = getHuman(mother_id);
-            if (father != null) {
-                human.setFather(father);
-                father.setChildren(human);
-            }
-            if (mother != null) {
-                human.setMother(mother);
-                mother.setChildren(human);
-            }
-        }
-    }
-
-
-    public void printFamilyTree() {
-        for (Human human : humans) {
-            System.out.println(human);
-        }
-    }
-
     public int getgrandMother(int human_id) {
         Human human = getHuman(human_id);
         if (human != null) {
@@ -143,12 +69,20 @@ public class FamilyTree {
         return -1;
         }
 
-    public void printHuman(int human_id) {
-        for (Human human : humans) {
-            if (human.getHumanId() == human_id) {
-                System.out.println(human);
+    public int getgrandFather(int human_id) {
+        Human human = getHuman(human_id);
+        if (human != null) {
+            Human father = human.getFather();
+            if (father != null) {
+                Human grandFather = father.getFather();
+                if (grandFather != null) {
+                    return grandFather.getHumanId();
+                }
             }
         }
+        return -1;
     }
+
+
 
 }

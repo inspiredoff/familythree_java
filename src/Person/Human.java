@@ -46,35 +46,23 @@ public class Human {
         this.father = father;
         this.mother = mother;
         this.spouse = spouse;
-        this.children = new ArrayList<>();
+        this.children = children;
     }
 
 
-    public Human(
-            String first_name,
-            String last_name,
-            String family_name,
-            LocalDate birth_date,
-            LocalDate death_date,
-            gender gender
-                 ) {
-        this(first_name, last_name, family_name, birth_date, death_date, gender,
-                null, null, null, null);
-    }
-
-    public Human(
-            String first_name,
-            String last_name,
-            String family_name,
-            LocalDate birth_date,
-            LocalDate death_date,
-            gender gender,
-            Human father,
-            Human mother
-    ) {
-        this(first_name, last_name, family_name, birth_date, death_date, gender,
-                father, mother, null, null);
-    }
+//    public Human(
+//            String first_name,
+//            String last_name,
+//            String family_name,
+//            LocalDate birth_date,
+//            LocalDate death_date,
+//            gender gender,
+//            Human father,
+//            Human mother
+//    ) {
+//        this(first_name, last_name, family_name, birth_date, death_date, gender,
+//                father, mother, null, null);
+//    }
 
     public enum gender {
         male,
