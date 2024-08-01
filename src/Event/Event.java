@@ -3,19 +3,22 @@ package Event;
 import java.time.LocalDate;
 import java.util.List;
 
+import Person.Human;
 import Place.Place;
 
-public class Events {
+public class Event {
 
     private int event_id;
     private String event_name;
+    private List<Human> persons;
     private LocalDate event_date;
-    private List<Place> places;
+    private Place place;
 
-    public Events(String event_name, LocalDate event_date, List<Place> places) {
+    public Event(String event_name, LocalDate event_date, Place place, List<Human> persons) {
         this.event_name = event_name;
         this.event_date = event_date;
-        this.places = places;
+        this.persons = persons;
+        this.place = place;
     }
 
     public int getEvent_id() {
@@ -42,15 +45,19 @@ public class Events {
         this.event_date = event_date;
     }
 
-    public List<Place> getPlaces() {
-        return places;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setPlaces(Place...places) {
-        this.places = List.of(places);
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
-    public void setPlaces(List<Place> places) {
-        this.places = places;
+    public void setPerson(Human...person){
+        this.persons.addAll(persons);
+    }
+
+    public List<Human> getPersons(){
+        return this.persons;
     }
 }

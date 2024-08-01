@@ -3,7 +3,7 @@ package Person;
 import java.time.LocalDate;
 import java.util.List;
 
-public class HumanBuilder implements Builder {
+public class HumanBuilder implements HumanBuilderInterface {
     private int id;
     private String first_name;
     private String last_name;
@@ -18,67 +18,67 @@ public class HumanBuilder implements Builder {
 
 
     @Override
-    public Builder set_id(int id) {
-        this.id = id;
+    public HumanBuilderInterface set_id() {
+        this.id++;
         return this;
     }
 
     @Override
-    public Builder set_first_name(String first_name) {
+    public HumanBuilderInterface set_first_name(String first_name) {
         this.first_name = first_name;
         return this;
     }
 
     @Override
-    public Builder set_last_name(String last_name) {
+    public HumanBuilderInterface set_last_name(String last_name) {
         this.last_name = last_name;
         return this;
     }
 
     @Override
-    public Builder set_family_name(String family_name) {
+    public HumanBuilderInterface set_family_name(String family_name) {
         this.family_name = family_name;
         return this;
     }
 
     @Override
-    public Builder set_gender(Human.gender gender) {
+    public HumanBuilderInterface set_gender(Human.gender gender) {
         this.gender = gender;
         return this;
     }
 
     @Override
-    public Builder set_birth_date(LocalDate birth_date) {
+    public HumanBuilderInterface set_birth_date(LocalDate birth_date) {
         this.birth_date = birth_date;
         return this;
     }
 
     @Override
-    public Builder set_death_date(LocalDate death_date) {
+    public HumanBuilderInterface set_death_date(LocalDate death_date) {
         this.death_date = death_date;
         return this;
     }
 
     @Override
-    public Builder set_father(Human father) {
+    public HumanBuilderInterface set_father(Human father) {
         this.father = father;
         return this;
     }
 
     @Override
-    public Builder set_mother(Human mother) {
+    public HumanBuilderInterface set_mother(Human mother) {
         this.mother = mother;
         return this;
     }
 
     @Override
-    public Builder set_spouse(Human spouse) {
+    public HumanBuilderInterface set_spouse(Human spouse) {
         this.spouse = spouse;
         return this;
     }
 
     @Override
-    public Builder set_children(Human...children) {
+    public HumanBuilderInterface set_children(Human...children) {
         this.child = List.of(children);
         return this;
     }

@@ -1,15 +1,15 @@
 package Person;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import Event.Events;
+import Event.Event;
 import Place.Place;
 
 
-public class Human {
+public class Human implements Serializable{
     private int human_id;
     private String first_name;
     private String last_name;
@@ -21,9 +21,8 @@ public class Human {
     private Human father;
     private Human spouse;
     private List<Human> children;
-    private List<Events> events;
+    private List<Event> events;
     private List<Place> places;
-
 
     public Human(
             String first_name,
@@ -47,6 +46,8 @@ public class Human {
         this.mother = mother;
         this.spouse = spouse;
         this.children = children;
+        this.events = new ArrayList<>();
+        this.places = new ArrayList<>();
     }
 
 
@@ -188,6 +189,22 @@ public class Human {
 
     public void setSpouse() {
         this.spouse = null;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Event...event) {
+        this.events.addAll(List.of(event));
+    }
+
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(Place...place) {
+        this.places.addAll(List.of(place));
     }
 
     private String getMotherFullName() {

@@ -2,11 +2,12 @@ package FamilyTree;
 
 import Person.Human;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyTree {
+public class FamilyTree implements Serializable {
     private int id;
     private String familyTreeName;
     private List<Human>humans;
