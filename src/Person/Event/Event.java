@@ -1,10 +1,10 @@
-package Event;
+package Person.Event;
+
+import Person.Human;
+import Person.Place.Place;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import Person.Human;
-import Place.Place;
 
 public class Event {
 
@@ -14,7 +14,8 @@ public class Event {
     private LocalDate event_date;
     private Place place;
 
-    public Event(String event_name, LocalDate event_date, Place place, List<Human> persons) {
+    public Event(int eventId,String event_name, LocalDate event_date, Place place, List<Human> persons) {
+        this.event_id = eventId;
         this.event_name = event_name;
         this.event_date = event_date;
         this.persons = persons;

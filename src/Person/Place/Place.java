@@ -1,4 +1,4 @@
-package Place;
+package Person.Place;
 
 public class Place {
     private int placeId;

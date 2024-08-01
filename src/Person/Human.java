@@ -1,12 +1,11 @@
 package Person;
 
+import Person.Event.Event;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import Event.Event;
-import Place.Place;
 
 
 public class Human implements Serializable{
@@ -26,8 +25,7 @@ public class Human implements Serializable{
     private Human spouse;
     private List<Human> children;
     private List<Event> events;
-    // private List<Place> places;
-
+    // private List<Person.Place> places;
     
 
 
@@ -57,7 +55,7 @@ public class Human implements Serializable{
         // this.places = new ArrayList<>();
     }
  
-    public Human(HumanBuilder humanBuilder) {
+    public Human() {
         this.children = new ArrayList<>();
         this.events = new ArrayList<>();
     }

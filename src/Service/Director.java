@@ -1,16 +1,12 @@
 package Service;
 
-import Person.HumanBuilderInterface;
-import Person.Human.gender;
-import Place.Place;
+import Person.Place.Place;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import Event.Event;
-import Event.EventBuilderInterface;
 import Person.Human;
-import Person.HumanBuilder;
 
 public class Director {
 
