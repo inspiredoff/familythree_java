@@ -10,6 +10,10 @@ import Place.Place;
 
 
 public class Human implements Serializable{
+    public enum gender {
+        male,
+        female
+    }
     private int human_id;
     private String first_name;
     private String last_name;
@@ -22,7 +26,10 @@ public class Human implements Serializable{
     private Human spouse;
     private List<Human> children;
     private List<Event> events;
-    private List<Place> places;
+    // private List<Place> places;
+
+    
+
 
     public Human(
             String first_name,
@@ -47,166 +54,33 @@ public class Human implements Serializable{
         this.spouse = spouse;
         this.children = children;
         this.events = new ArrayList<>();
-        this.places = new ArrayList<>();
+        // this.places = new ArrayList<>();
     }
-
-
-//    public Human(
-//            String first_name,
-//            String last_name,
-//            String family_name,
-//            LocalDate birth_date,
-//            LocalDate death_date,
-//            gender gender,
-//            Human father,
-//            Human mother
-//    ) {
-//        this(first_name, last_name, family_name, birth_date, death_date, gender,
-//                father, mother, null, null);
-//    }
-
-    public enum gender {
-        male,
-        female
+ 
+    public Human(HumanBuilder humanBuilder) {
+        this.children = new ArrayList<>();
+        this.events = new ArrayList<>();
     }
-
-    public int getHumanId() {
-        return human_id;
+   
+    @Override
+    public String toString() {
+        return "Human{" +
+                "human_id=" + human_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", family_name='" + family_name + '\'' +
+                ", birth_date='" + birth_date + '\'' +
+                ", death_date='" + death_date + '\'' +
+                ", gender=" + gender +
+                ", mother=" + getMotherFullName() +
+                ", father=" + getFatherFullName() +
+                ", spouse=" + getSpouseFullName() +
+                ", children=" + getChildrenFullName() +
+                ", events=" + getEvents() +
+                // ", places=" + places +
+                '}';
     }
-
-    public int setHumanId(int human_id) {
-        this.human_id = human_id;
-        return human_id;
-    }
-
-    public String getFirstName() {
-        return first_name;
-    }
-
-    public String getLastName() {
-        return last_name;
-    }
-
-    public String getFamilyName() {
-        return family_name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birth_date;
-    }
-
-    public LocalDate getDeathDate() {
-        return death_date;
-    }
-
-    public gender getGender() {
-        return gender;
-    }
-
-    public Human getMother() {
-        if (mother == null) {
-            return null;
-        } else {
-            return mother;
-        }
-    }
-
-    public Human getFather() {
-        if (father == null) {
-            return null;
-        } else {
-            return father;
-        }
-    }
-
-    public Human getSpouse() {
-        if (spouse == null) {
-            return null;
-        } else {
-            return spouse;
-        }
-    }
-
-    public List<Human> getChildren() {
-        if (children == null) {
-            return null;
-        } else {
-            return children;
-        }
-    }
-
-    public void setGender(gender gender) {
-        this.gender = gender;
-    }
-
-    public void setFirstName(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public void setFamilyName(String family_name) {
-        this.family_name = family_name;
-    }
-
-    public void setBirthDate(LocalDate birth_date) {
-        this.birth_date = birth_date;
-    }
-
-    public void setDeathDate(LocalDate death_date) {
-        this.death_date = death_date;
-    }
-
-    public void setChildren(Human child) {
-        this.children.add(child);
-    }
-
-    public void removeChildren(Human child) {
-        this.children.remove(child);
-    }
-
-    public void setSpouse(Human spouse) {
-        this.spouse = spouse;
-    }
-
-    public void setMother(Human mother) {
-        this.mother = mother;
-    }
-
-    public void setMother() {
-        this.mother = null;
-    }
-
-    public void setFather(Human father) {
-        this.father = father;
-    }
-
-    public void setFather() {
-        this.father = null;
-    }
-
-    public void setSpouse() {
-        this.spouse = null;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Event...event) {
-        this.events.addAll(List.of(event));
-    }
-
-    public List<Place> getPlaces() {
-        return places;
-    }
-
-    public void setPlaces(Place...place) {
-        this.places.addAll(List.of(place));
-    }
-
+   
     private String getMotherFullName() {
         if (getMother() == null) {
             return "not information";
@@ -232,7 +106,7 @@ public class Human implements Serializable{
     }
 
     private String getChildrenFullName() {
-        if (getChildren().isEmpty()) {
+        if (getChildren() == null) {
             return "not information/children";
         } else {
             StringBuilder sb = new StringBuilder();
@@ -243,23 +117,129 @@ public class Human implements Serializable{
         }
     }
 
-    @Override
-    public String toString() {
-        return "Human{" +
-                "human_id=" + human_id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", family_name='" + family_name + '\'' +
-                ", birth_date='" + birth_date + '\'' +
-                ", death_date='" + death_date + '\'' +
-                ", gender=" + gender +
-                ", mother=" + getMotherFullName() +
-                ", father=" + getFatherFullName() +
-                ", spouse=" + getSpouseFullName() +
-                ", children=" + getChildrenFullName() +
-                ", events=" + events +
-                ", places=" + places +
-                '}';
+    public int getHumanId() {
+        return human_id;
     }
+
+    public void setHumanId(int human_id) {
+        this.human_id = human_id;
+    }
+
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public void setFirstName(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+
+    public void setLastName(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public String getFamilyName() {
+        return family_name;
+    }
+
+    public void setFamilyName(String family_name) {
+        this.family_name = family_name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birth_date;
+    }
+
+    public void setBirthDate(LocalDate birth_date) {
+        this.birth_date = birth_date;
+    }
+
+    public LocalDate getDeathDate() {
+        return death_date;
+    }
+
+    public void setDeathDate(LocalDate death_date) {
+        this.death_date = death_date;
+    }
+
+    public gender getGender() {
+        return gender;
+    }
+
+
+
+
+    public void setGender(gender gender) {
+        this.gender = gender;
+    }
+
+
+
+
+    public Human getMother() {
+        return mother;
+    }
+
+
+
+
+    public void setMother(Human mother) {
+        this.mother = mother;
+    }
+
+
+
+
+    public Human getFather() {
+        return father;
+    }
+
+
+
+
+    public void setFather(Human father) {
+        this.father = father;
+    }
+
+
+
+
+    public Human getSpouse() {
+        return spouse;
+    }
+
+
+
+
+    public void setSpouse(Human spouse) {
+        this.spouse = spouse;
+    }
+
+
+
+
+    public List<Human> getChildren() {
+        return children;
+    }
+
+
+
+
+    public void setChildren(List<Human> children) {
+        this.children.addAll(children);
+    }
+
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> event) {
+        this.events.addAll(event);
+    }
+    
 }
 

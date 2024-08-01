@@ -11,23 +11,18 @@ import Service.Director;
 public class Main {
     public static void main(String[] args) {
        
-        HumanBuilder humanbuilder = new HumanBuilder();
-        EventBuilder eventBuilder = new EventBuilder();
-        Director director = new Director(humanbuilder, eventBuilder);
-        Human human = director.createHuman(
-                "Artem",
-                "Chernov",
-                "Vadimovich",
-                LocalDate.of(1995, 02, 22),
-                null,
-                null,
-                null,
-                gender.male,
-                null,
-                null,
-                null,
-                null,
-                null);
-        System.out.println(human.toString());
-        }
+       HumanBuilder humanBuilder = new HumanBuilder();
+       EventBuilder eventBuilder = new EventBuilder();
+       Director director = new Director(humanBuilder, eventBuilder);
+       director.createHuman(humanBuilder, "Artem", "chernov", "vadimovich", gender.male);
+       director.createBirthDate(humanBuilder, LocalDate.of(1995, 02, 22), "Dzerzhinsk");
+       director.getHuman(humanBuilder);
+       HumanBuilder humanBuilder2 = new HumanBuilder();
+       director.createHuman(humanBuilder2, "sdsd", "sdsd", "awrf", gender.female);
+       director.createBirthDate(humanBuilder2, LocalDate.of(1234, 05, 23), "sdac");
+       Human human2 = humanBuilder2.build();
+       Human human = humanBuilder.build();
+       System.out.println(human);
+       System.out.println(human2);
     }
+}

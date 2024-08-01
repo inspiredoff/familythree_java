@@ -60,4 +60,12 @@ public class Event {
     public List<Human> getPersons(){
         return this.persons;
     }
+
+    @Override
+    public String toString() {
+        return "Event [event_id=" + event_id + ", event_name=" + event_name + ", persons=" + persons + ", event_date="
+                + event_date + ", place=" + place + "]";
+    }
+
+    
 }

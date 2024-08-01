@@ -10,6 +10,7 @@ import java.util.List;
 import Event.Event;
 import Event.EventBuilderInterface;
 import Person.Human;
+import Person.HumanBuilder;
 
 public class Director {
 
@@ -22,47 +23,64 @@ public class Director {
         this.eventBuilder = eventBuilder;
     }
 
-    public Human createHuman(String firstName,
+    public void createHuman(HumanBuilder builder,
+                            String firstName,
                             String lastName,
                             String familyName,
-                            LocalDate birthDate,
-                            String placeNameBirth,
-                            LocalDate deadDate,
-                            String placeNameDead,
-                            gender gender,
-                            Human father,
-                            Human mother
-                            // Human spouce,
-                            // LocalDate wendingDate,
-                            // String placeNameWending,
-                            // Human...children
+                            Human.gender gender
                             ){
-        Human human =  humanBuilder
-                                    .set_id()
-                                    .set_first_name(firstName)
-                                    .set_last_name(lastName)
-                                    .set_family_name(familyName)
-                                    .set_birth_date(birthDate)
-                                    .set_death_date(deadDate)
-                                    .set_gender(gender)
-                                    .set_father(father)
-                                    .set_mother(mother)
-                                    // .set_spouse(spouce)
-                                    // .set_children(children)
-                                    .build();
+        builder
+                .setId()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setFamilyName(familyName)
+                .setGender(gender);
+    }
 
-        human.setEvents(creatEvent("Birth", birthDate, placeNameBirth, human));
-                                    
-        if (deadDate != null){
-            human.setEvents(creatEvent("Dead", deadDate, placeNameDead, human));
-        }
-        // if (spouce != null){
-        //     human.setEvents(creatEvent("wending", wendingDate, placeNameWending, spouce));
-        //     spouce.setSpouse(human);
-        // }
-        return human;
+    public void createBirthDate(HumanBuilder builder,
+                                LocalDate birthDate,
+                                String place){
+        builder
+                .setBirthDate(birthDate)
+                .setEvent(creatEvent("birthday", birthDate, place));
+    }
+
+    public void createDeathDate(HumanBuilder builder,
+                                LocalDate deadDate,
+                                String place){
+        builder
+                .setDeathDate(deadDate)
+                .setEvent(creatEvent("dead", deadDate, place, null));
     }
     
+    public void setParents(HumanBuilder builder,
+                            Human father,
+                            Human mother){
+        builder
+                .setFather(father)
+                .setMother(mother);
+                            }
+    public void setWending(HumanBuilder builder,
+                            Human spouce,
+                            LocalDate date,
+                            String place){
+        builder
+                .setSpouse(spouce)
+                .setEvent(creatEvent("wending", date, place, spouce));
+                            }
+    // public void setChildren(HumanBuilder builder,
+    //                         Human children
+    //                         ){
+    //     builder
+    //             .setChildren(children)
+    //             .setEvent(creatEvent("birthday children", children.getBirthDate(), children.getEvents().get(0).getPlace(), children));
+
+    //     }
+
+    public HumanBuilder getHuman(HumanBuilder builder){
+        return builder;
+    }
+
     private Event creatEvent(String nameEvent, LocalDate evenDate, String namePlace, Human...persons){
         return eventBuilder
                             .setEventId()
@@ -71,33 +89,6 @@ public class Director {
                             .setPersons(List.of(persons))
                             .setPlace(new Place(placeId++, namePlace))
                             .build();
-    }
-
-    public void createEventDead(Human person,
-                                LocalDate deadDate,
-                                String placeName
-                                ){
-        person.setDeathDate(deadDate);
-        person.setEvents(creatEvent("Dead", deadDate, placeName, person););
-        // person.setPlaces(event.getPlace());
-        }
-
-    public void createWending(Human wife,
-                            Human husband,
-                            LocalDate wendiDate,
-                            String placeName    
-                            ){
-        Event event = creatEvent("wending", wendiDate, placeName, wife, husband);
-        for(Human human : List.of(wife, husband)){
-            human.setEvents(event);
-            // human.setPlaces(event.getPlace());
-        }
-        wife.setSpouse(husband);
-        husband.setSpouse(wife);
-    }
-
-    public void createBirthChildren(Human father, Human mother, Human children){
-        
     }
 
 }
