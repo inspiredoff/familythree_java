@@ -1,35 +1,38 @@
 package FamilyTree;
 
+import Person.Event.Event;
+import Person.Human;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FamilyTree implements Serializable {
-//    private int id;
-//    private String familyTreeName;
-//    private List<Human>humans;
-//
-//    public FamilyTree(int id, String familyTreeName) {
-//        this.id = id;
-//        this.familyTreeName = familyTreeName;
-//        humans = new ArrayList<>();
-//    }
-//
-//    public Human getHuman(int human_id) {
-//        for (Human human : humans) {
-//            if (human.getHumanId() == human_id) {
-//                return human;
-//            }
-//        }
-//        System.out.println("Human not found");
-//        return null;
-//    }
-//
-//    public List<Human> getHumanList() {
-//        return humans;
-//    }
-//
-//    public void addHuman(Human human) {
-//        humans.add(human);
-//    }
+    private int id;
+    private String familyTreeName;
+    private List<Human> humans;
+    private List<Event> events;
+
+    public FamilyTree(int id, String familyTreeName) {
+        this.id = id;
+        this.familyTreeName = familyTreeName;
+        humans = new ArrayList<>();
+        events = new ArrayList<>();
+    }
+
+    public Human getHuman(int human_id) {
+        for (Human human : humans) {
+            if (human.getHumanId() == human_id) {
+                return human;
+            }
+        }
+        System.out.println("Human not found");
+        return null;
+    }
+
+    public List<Human> getFamilyTree() {
+        return humans;
+    }
 
 //    public void deleteHuman(int human_id) {
 //        Human human = getHuman(human_id);
@@ -50,34 +53,32 @@ public class FamilyTree implements Serializable {
 //        }
 //
 //    }
-//
-////    public int getgrandMother(int human_id) {
-////        Human human = getHuman(human_id);
-//        if (human != null) {
-//            Human mother = human.getMother();
-//            if (mother != null) {
-//                Human grandMother = mother.getMother();
-//                if (grandMother != null) {
-//                    return grandMother.getHumanId();
-//                }
-//            }
-//        }
-//        return -1;
-//        }
-//
-//    public int getgrandFather(int human_id) {
-//        Human human = getHuman(human_id);
-//        if (human != null) {
-//            Human father = human.getFather();
-//            if (father != null) {
-//                Human grandFather = father.getFather();
-//                if (grandFather != null) {
-//                    return grandFather.getHumanId();
-//                }
-//            }
-//        }
-//        return -1;
-//    }
+
+    public void addHuman(Human human) {
+        humans.add(human);
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public void getEvent(int event_id) {
+        for (Event event : events) {
+            if (event.getEvent_id() == event_id) {
+                System.out.println(event.toString());
+            }
+        }
+    }
+
+    public void removeEvent(int event_id) {
+        for (Event event : events) {
+            if (event.getEvent_id() == event_id) {
+                events.remove(event);
+            }
+        }
+    }
+
+
 
 
 

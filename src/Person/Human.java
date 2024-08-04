@@ -74,7 +74,7 @@ public class Human implements Serializable{
                 ", father=" + getFatherFullName() +
                 ", spouse=" + getSpouseFullName() +
                 ", children=" + getChildrenFullName() +
-                ", events=" + getEvents() +
+//                ", events=" + events +
                 // ", places=" + places +
                 '}';
     }
@@ -98,7 +98,11 @@ public class Human implements Serializable{
     private String getSpouseFullName() {
         if (getSpouse() == null) {
             return "single/divorced";
-        } else {
+        } else {//                ", mother=" + getMotherFullName() +
+//                ", father=" + getFatherFullName() +
+//                ", spouse=" + getSpouseFullName() +
+//                ", children=" + getChildrenFullName() +
+//                ", events=" + getEvents() +
             return spouse.getFirstName() + " " + spouse.getLastName();
         }
     }
@@ -167,69 +171,41 @@ public class Human implements Serializable{
         return gender;
     }
 
-
-
-
     public void setGender(gender gender) {
         this.gender = gender;
     }
-
-
-
 
     public Human getMother() {
         return mother;
     }
 
-
-
-
     public void setMother(Human mother) {
         this.mother = mother;
     }
-
-
-
 
     public Human getFather() {
         return father;
     }
 
-
-
-
     public void setFather(Human father) {
         this.father = father;
     }
-
-
-
 
     public Human getSpouse() {
         return spouse;
     }
 
-
-
-
     public void setSpouse(Human spouse) {
         this.spouse = spouse;
     }
-
-
-
 
     public List<Human> getChildren() {
         return children;
     }
 
-
-
-
     public void setChildren(List<Human> children) {
         this.children.addAll(children);
     }
-
 
     public List<Event> getEvents() {
         return events;
