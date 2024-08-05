@@ -97,7 +97,7 @@ public class Human implements Serializable{
 
     private String getSpouseFullName() {
         if (getSpouse() == null) {
-            return "single/divorced";
+            return "single/divorced";-
         } else {//                ", mother=" + getMotherFullName() +
 //                ", father=" + getFatherFullName() +
 //                ", spouse=" + getSpouseFullName() +

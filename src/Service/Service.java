@@ -1,16 +1,26 @@
 package Service;
 
-public class Service {
+import FamilyTree.FamilyTree;
 
-    public Service() {
+public class Service {
+    private int id;
+    private FamilyTree familyTree;
+    private FamilyTreeService service;
+    private HumanConstructor humanConstructor;
+    private EventConstructor eventConstructor;
+
+    public Service(String FamilyTreeeName) {
+        this.familyTree = new FamilyTree(this.id++, FamilyTreeeName);
+        this.humanConstructor = new HumanConstructor();
+        this.eventConstructor  = new EventConstructor();
+        this.service = new FamilyTreeService(familyTree, humanConstructor, eventConstructor);
     }
 
     public void createNewTree() {
-
     }
 
-    public void createNewHuman() {
-
+    public void createNewHuman(Human father, ) {
+        service.bornHuman(null, null, null, null, null, null);
     }
 
     public void changing_person_data() {
