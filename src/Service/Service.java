@@ -1,6 +1,10 @@
 package Service;
 
 import FamilyTree.FamilyTree;
+import Person.Human;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class Service {
     private int id;
@@ -10,25 +14,31 @@ public class Service {
     private EventConstructor eventConstructor;
 
     public Service(String FamilyTreeeName) {
-        this.familyTree = new FamilyTree(this.id++, FamilyTreeeName);
+        createNewTree(FamilyTreeeName);
         this.humanConstructor = new HumanConstructor();
         this.eventConstructor  = new EventConstructor();
         this.service = new FamilyTreeService(familyTree, humanConstructor, eventConstructor);
     }
 
-    public void createNewTree() {
+    public void createNewTree(String FamilyTreeeName) {
+        this.familyTree = new FamilyTree(this.id++, FamilyTreeeName);
     }
 
-    public void createNewHuman(Human father, ) {
-        service.bornHuman(null, null, null, null, null, null);
+    public void bornChild(Human father, Human mother, LocalDate BornDate, String placeName, String childFirstName, Human.gender gender) {
+        service.bornHuman(father, mother, BornDate, placeName, childFirstName, gender);
     }
 
-    public void changing_person_data() {
-
+    public void wendingHuman(Human wife, Human husband, LocalDate wendingDate, String placeName) {
+        service.wendingHuman(wife, husband, wendingDate, placeName);
     }
 
-    public void createNewEvent() {
-        //TODO попробовать реализовать изменение человека через добавление событий
+    public void deadHuman(Human human, LocalDate deathDay, String placeName) {
+        service.deadHuman(human, deathDay, placeName);
+    }
+
+
+    public void createNewEvent(String event_name, LocalDate event_date, String placeName, List<Human> persons) {
+        eventConstructor.newEvent(event_name, event_date, placeName, persons);
     }
 
     public void searchHuman() {
