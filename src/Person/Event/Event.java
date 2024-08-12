@@ -26,11 +26,11 @@ public class Event {
         return event_id;
     }
 
-    public void setEvent_id(int event_id) {
+    public void setEventId(int event_id) {
         this.event_id = event_id;
     }
 
-    public String getEvent_name() {
+    public String getEventName() {
         return event_name;
     }
 
@@ -38,7 +38,7 @@ public class Event {
         this.event_name = event_name;
     }
 
-    public LocalDate getEvent_date() {
+    public LocalDate getEventDate() {
         return event_date;
     }
 

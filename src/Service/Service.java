@@ -39,6 +39,7 @@ public class Service {
         this.humanConstructor.newHuman(human)
                             .humanSetParent(father, mother)
                             .build();
+        this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId),null , null, null, human, father, mother);
     }
 
     public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName){

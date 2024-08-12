@@ -30,9 +30,10 @@ public class EventConstructor {
         return newEvent("wending", event_date, placeName, List.of(person));
     }
 
-    public void updateEvent(Event event, String event_name, LocalDate event_date, String placeName) {
-        if (event_name != null) event.setEvent_name(event_name);
-        if (event_date != null) event.setEvent_date(event_date);
+    public void updateEvent(Event event, String eventName, LocalDate eventDate, String placeName, Human...persons) {
+        if (eventName != null) event.setEvent_name(eventName);
+        if (eventDate != null) event.setEvent_date(eventDate);
         if (placeName != null) event.setPlace(new Place(placeId++, placeName));
+        if (persons != null) event.setPerson(persons);
     }
     }
