@@ -1,32 +1,28 @@
 package Service;
 
 import FamilyTree.FamilyTree;
-import Person.Human;
 import Person.Event.Event;
+import Person.Human;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-public class FamilyTreeConstructor {
+public class FamilyTreeService {
     private int familyTreeId;
     private FamilyTree familyTree;
     private List<FamilyTree> listFamilyTrees;
-    
 
-    public FamilyTreeConstructor() {
+
+    public FamilyTreeService() {
+        this.listFamilyTrees = new ArrayList<>();
 
     }
 
     public void createFamilyTree(String FamilyTreeName){
-        this.familyTree = new FamilyTree(familyTreeId++, FamilyTreeName);
+        FamilyTree familyTree = new FamilyTree(familyTreeId++, FamilyTreeName);
         this.listFamilyTrees.add(familyTree);
+        this.familyTree = familyTree;
     }
-
-
-
-    // public void setFamilyTree(int id){
-    //     for ;
-    // }
 
     public void addHuman(Human human){
         this.familyTree.addHuman(human);
@@ -41,18 +37,18 @@ public class FamilyTreeConstructor {
     }
 
     public Human getHuman(int humanId){
-        return this.getHuman(humanId);
+        return this.familyTree.getHuman(humanId);
     }
 
     public void printHumanInFamilyTree(){
         for (Human human: this.familyTree.getAllHuman()) {
-            System.out.println(human);            
+            System.out.println(human);
         }
     }
 
     public void printEventInFamilyTree(){
         for (Event event: this.familyTree.getAllEvent()) {
-            System.out.println(event);            
+            System.out.println(event);
         }
     }
 
@@ -64,7 +60,19 @@ public class FamilyTreeConstructor {
         familyTree.deleteHuman(humanId);
     }
 
+    public  FamilyTree getFamilyTree(int familyTreeId){
+        return this.listFamilyTrees.get(familyTreeId);
+    }
+
     public List<FamilyTree> getAllFamilyTree(){
         return listFamilyTrees;
     }
+
+    public void setFamilyTree(int familyTreeId){
+        for (FamilyTree familyTree : listFamilyTrees) {
+            if (familyTree.getFamilyTreeId() == familyTreeId) {
+                this.familyTree = familyTree;
+            }
+        }
     }
+}

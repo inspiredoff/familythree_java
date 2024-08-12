@@ -3,7 +3,6 @@ package Service;
 import Person.Human;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class HumanConstructor {
     private Human human;
@@ -18,16 +17,17 @@ public class HumanConstructor {
         return this;
     }
 
-    public HumanConstructor newHuman(String firstName, String lastName, String familyName){
+    public HumanConstructor newHuman(String firstName, String lastName, String familyName, Human.gender gender){
         this.human = new Human();
-        humanSetName(firstName, lastName, familyName);
+        humanSetName(firstName, lastName, familyName, gender);
         return this;
     }
 
-    public HumanConstructor humanSetName(String firstName, String lastName, String familyName){
+    public HumanConstructor humanSetName(String firstName, String lastName, String familyName, Human.gender gender){
         human.setHumanId(id++);
         human.setFirstName(firstName);
         human.setLastName(lastName);
+        human.setGender(gender);
         human.setFamilyName(familyName);
         return this;
     }

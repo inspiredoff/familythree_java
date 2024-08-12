@@ -85,6 +85,10 @@ public class FamilyTree implements Serializable {
             }
         }
     }
+    
+    public Integer getFamilyTreeId() {
+        return id;
+    }
 
 
 
