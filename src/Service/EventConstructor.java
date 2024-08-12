@@ -22,15 +22,11 @@ public class EventConstructor {
         return newEvent("died", event_date, placeName, List.of(person));
     }
 
-    public Event bornEvent (LocalDate event_date, String placeName, Human...person) {
-        return newEvent("bornchild", event_date, placeName, List.of(person));
+    public Event bornEvent (LocalDate event_date, String placeName, Human father, Human mother, Human child) {
+        return newEvent("bornchild", event_date, placeName, List.of(father, mother, child));
     }
 
     public Event wendingEvent (LocalDate event_date, String placeName, Human...person) {
         return newEvent("wending", event_date, placeName, List.of(person));
-    }
-
-    public Event bornChildEvent (LocalDate event_date, String placeName, Human...persons) {
-        return newEvent("bornchild", event_date, placeName, List.of(persons));//TODO объеденить с рождением
     }
 }

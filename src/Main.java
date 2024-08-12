@@ -1,6 +1,7 @@
 import FamilyTree.FamilyTree;
 import Person.Human;
 import Service.HumanConstructor;
+import Service.Service;
 
 import java.time.LocalDate;
 
@@ -8,14 +9,7 @@ import java.time.LocalDate;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        FamilyTree familyTree = new FamilyTree(1, "Chernovi");
-        HumanConstructor humanConstructor = new HumanConstructor(familyTree);
-        Human human = humanConstructor
-                .setName("Ivan", "Ivanov", "Ivanovich", Human.gender.male)
-                .setBirthDate(LocalDate.of(1990, 1, 1), "Moscow")
-                .setDeathDate(LocalDate.of(1995, 1, 1), "Moscow")
-                .build();
-        System.out.println(human);
-        familyTree.getEvent(0);
-    }
+        Service service = new Service();
+        service.bornHuman("Artem", "Vadimovich", "Chernov", LocalDate.of(1995, 22, 02), "Dzerhinsk", null, null);
+}
 }

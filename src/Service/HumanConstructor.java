@@ -9,67 +9,57 @@ public class HumanConstructor {
     private Human human;
     private int id;
 
-    public HumanConstructor() {
-        this.newHuman();
-    }
-    public void newHuman(){
+    public HumanConstructor(){
         this.human = new Human();
-        human.setHumanId(id++);
     }
 
-    public void setHuman (Human human){
+    public HumanConstructor newHuman(Human human){
         this.human = human;
-    }
-
-    //TODO почистить класс и оставить только методы работы с людьми
-    //TODO сделать работу сервиса с этим классом через интерфейс
-
-    public HumanConstructor setName(String first_name, String last_name, String family_name, Human.gender gender) {
-        human.setFirstName(first_name);
-        human.setLastName(last_name);
-        human.setFamilyName(family_name);
-        human.setGender(gender);
         return this;
     }
 
-    public HumanConstructor setBirthDate(LocalDate birth_date) {
-        human.setBirthDate(birth_date);
+    public HumanConstructor newHuman(String firstName, String lastName, String familyName){
+        this.human = new Human();
+        humanSetName(firstName, lastName, familyName);
         return this;
     }
 
-    public HumanConstructor setDeathDate(LocalDate death_date) {
-        human.setDeathDate(death_date);
+    public HumanConstructor humanSetName(String firstName, String lastName, String familyName){
+        human.setHumanId(id++);
+        human.setFirstName(firstName);
+        human.setLastName(lastName);
+        human.setFamilyName(familyName);
         return this;
     }
 
-    public HumanConstructor setParent (Human father, Human mother){
-        this.setFather(father);
-        this.setMother(mother);
-
-        //TODO add proverki
-        return this;
-    }
-    private HumanConstructor setFather(Human father) {
+    public HumanConstructor humanSetParent(Human father, Human mother){
         human.setFather(father);
-        return this;
-    }
-
-    private HumanConstructor setMother(Human mother) {
         human.setMother(mother);
         return this;
     }
 
-    public HumanConstructor setSpouse(Human spouse) {
-        human.setSpouse(spouse);
+    public HumanConstructor humanSetSpouce(Human spouce){
+        human.setSpouse(spouce);
         return this;
     }
 
-    public HumanConstructor addChild(Human...child) {
-        human.setChildren(List.of(child));
+    public HumanConstructor humanSetBirthDate(LocalDate birthDate){
+        human.setBirthDate(birthDate);
         return this;
     }
 
-    public Human build() {
-        return human;
+    public HumanConstructor humanSetDeathDate(LocalDate deathDate){
+        human.setDeathDate(deathDate);
+        return this;
+    }
+
+    private void refresh(){
+        this.human = null;
+    }
+
+    public Human build(){
+        Human resHuman = human;
+        refresh();
+        return resHuman;
     }
 }

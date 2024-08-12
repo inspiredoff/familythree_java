@@ -2,60 +2,56 @@ package Service;
 
 import FamilyTree.FamilyTree;
 import Person.Human;
+import Person.Event.Event;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class Service {
-    private int id;
-    private FamilyTree familyTree;
-    private FamilyTreeService service;
-    private HumanConstructor humanConstructor;
     private EventConstructor eventConstructor;
+    private FamilyTreeConstructor familyTreeConstructor;
+    private HumanConstructor humanConstructor;
 
-    public Service(String FamilyTreeeName) {
-        createNewTree(FamilyTreeeName);
+    public Service() {
+        this.eventConstructor = new EventConstructor();
         this.humanConstructor = new HumanConstructor();
-        this.eventConstructor  = new EventConstructor();
-        this.service = new FamilyTreeService(familyTree, humanConstructor, eventConstructor);
     }
 
     public void createNewTree(String FamilyTreeeName) {
-        this.familyTree = new FamilyTree(this.id++, FamilyTreeeName);
+        this.familyTreeConstructor.createFamilyTree(FamilyTreeeName);
     }
 
-    public void bornChild(Human father, Human mother, LocalDate BornDate, String placeName, String childFirstName, Human.gender gender) {
-        service.bornHuman(father, mother, BornDate, placeName, childFirstName, gender);
+    public void bornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Human father, Human mother){
+        Human human = humanConstructor.newHuman(firstName, lastName, familyName)
+                                .humanSetBirthDate(birthDate)
+                                .build();
+        Event event = eventConstructor.bornEvent(birthDate, placeName, father, mother, human);
+        this.familyTreeConstructor.addHuman(human);
+        this.familyTreeConstructor.addEvent(event);
     }
 
-    public void wendingHuman(Human wife, Human husband, LocalDate wendingDate, String placeName) {
-        service.wendingHuman(wife, husband, wendingDate, placeName);
+    public void setParent(Human human, Human father, Human mother){
+        this.humanConstructor.newHuman(human)
+                            .humanSetParent(father, mother)
+                            .build();
     }
 
-    public void deadHuman(Human human, LocalDate deathDay, String placeName) {
-        service.deadHuman(human, deathDay, placeName);
+    public void wendingHuman(Human wife, Human husband, LocalDate wendingDate, String placeName){
+        Event event = this.eventConstructor.wendingEvent(wendingDate, placeName, wife, husband);
+        this.familyTreeConstructor.addEvent(event);
     }
 
-
-    public void createNewEvent(String event_name, LocalDate event_date, String placeName, List<Human> persons) {
-        eventConstructor.newEvent(event_name, event_date, placeName, persons);
+    public void deadHuman(Human human, LocalDate deathDate, String placeName ){
+        this.humanConstructor.newHuman(human).humanSetDeathDate(deathDate).build();
+        Event event = eventConstructor.deadEvent(deathDate, placeName, human);
+        this.familyTreeConstructor.addEvent(event);
     }
 
-    public void searchHuman() {
-        //TODO реализовать поиск человека по его данным
+    public void printFamilyTreeHuman(){
+        this.familyTreeConstructor.printHumanInFamilyTree();
     }
 
-    public void searchEvent() {
-        //TODO реализовать поиск события по его данным
+    public void printEventInFamilyTree(){
+        this.familyTreeConstructor.printEventInFamilyTree();
     }
-
-    public void deleteHuman() {
-        //TODO реализовать удаление человека
-    }
-
-    public void deleteEvent() {
-        //TODO реализовать удаление события
-    }
-
-
 }

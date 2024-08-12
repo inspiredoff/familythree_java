@@ -30,29 +30,43 @@ public class FamilyTree implements Serializable {
         return null;
     }
 
-    public List<Human> getFamilyTree() {
+    public Event getEvent(int event_id) {
+        for (Event event : events) {
+            if (event.getEvent_id() == event_id) {
+                return event;
+            }
+        }
+        return null;
+    }
+
+    public List<Human> getAllHuman() {
         return humans;
     }
 
-//    public void deleteHuman(int human_id) {
-//        Human human = getHuman(human_id);
-//        if (human != null) {
-//            Human mother = human.getMother();
-//            Human father = human.getFather();
-//            Human spouse = human.getSpouse();
-//            if (mother != null) {
-//                mother.removeChildren(human);
-//            }
-//            if (father != null) {
-//                father.removeChildren(human);
-//            }
-//            if (spouse != null) {
-//                spouse.setSpouse(null);
-//            }
-//            humans.remove(human);
-//        }
-//
-//    }
+    public List<Event> getAllEvent() {
+        return events;
+    }
+
+   public void deleteHuman(int human_id) {
+       Human human = getHuman(human_id);
+       if (human != null) {
+           Human mother = human.getMother();
+           Human father = human.getFather();
+           Human spouse = human.getSpouse();
+           if (mother != null) {
+                List<Human> childrens = mother.getChildren();
+                childrens.remove(human);
+           }
+           if (father != null) {
+                father.getChildren().remove(human);
+           }
+           if (spouse != null) {
+                spouse.getChildren().remove(human);
+           }
+           humans.remove(human);
+       }
+
+   }
 
     public void addHuman(Human human) {
         humans.add(human);
@@ -62,13 +76,7 @@ public class FamilyTree implements Serializable {
         events.add(event);
     }
 
-    public void getEvent(int event_id) {
-        for (Event event : events) {
-            if (event.getEvent_id() == event_id) {
-                System.out.println(event.toString());
-            }
-        }
-    }
+   
 
     public void removeEvent(int event_id) {
         for (Event event : events) {
