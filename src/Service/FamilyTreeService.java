@@ -56,6 +56,14 @@ public class FamilyTreeService {
         this.familyTree.removeEvent(eventId);
     }
 
+    public void updateEvent(int eventId){
+        for (Event event: this.familyTree.getAllEvent()) {
+            if (event.getEvent_id() == eventId) {
+                this.familyTree.removeEvent(eventId);
+            }
+        }
+    }
+
     public void removeHuman (int humanId){
         familyTree.deleteHuman(humanId);
     }

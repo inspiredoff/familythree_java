@@ -62,4 +62,9 @@ public class Service {
     public void printEventInFamilyTree(){
         this.familyTreeService.printEventInFamilyTree();
     }
+
+    public void updateEvent(int eventId, String event_name, LocalDate event_date, String placeName){
+        this.eventConstructor.updateEvent(this.familyTreeService.getEvent(eventId), event_name, event_date, placeName);
+
+    }
 }
