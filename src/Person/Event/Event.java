@@ -3,10 +3,11 @@ package Person.Event;
 import Person.Human;
 import Person.Place.Place;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Event {
+public class Event implements Serializable {
 
     private int event_id;
     private String event_name;

@@ -83,4 +83,15 @@ public class FamilyTreeService {
             }
         }
     }
+
+    public Event getBornEventByHuman(int humanId){
+        for (Event event : this.familyTree.getAllEvent()) {
+            if (event.getEventName().equals("born") && event.getPersons().get(0).getHumanId() == humanId) {
+                return event;
+            }
+        }
+        return null;
+    }
+
+
 }
