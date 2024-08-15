@@ -68,8 +68,8 @@ public class FamilyTreeService {
         familyTree.deleteHuman(humanId);
     }
 
-    public  FamilyTree getFamilyTree(int familyTreeId){
-        return this.listFamilyTrees.get(familyTreeId);
+    public  FamilyTree getFamilyTree(){
+        return this.familyTree;
     }
 
     public List<FamilyTree> getAllFamilyTree(){
@@ -83,6 +83,8 @@ public class FamilyTreeService {
             }
         }
     }
+
+
 
     public Event getBornEventByHuman(int humanId){
         for (Event event : this.familyTree.getAllEvent()) {

@@ -5,6 +5,9 @@ import Person.Human;
 
 import java.time.LocalDate;
 
+import FamilyTree.FamilyTree;
+import Filehandler.FileHandler;
+
 public class Service {
     private EventConstructor eventConstructor;
     private FamilyTreeService familyTreeService;
@@ -39,7 +42,7 @@ public class Service {
         this.humanConstructor.newHuman(human)
                             .humanSetParent(father, mother)
                             .build();
-        this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId),null , null, null, human, father, mother);
+        // this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId),null , null, null, human, father, mother);
     }
 
     public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName){
@@ -68,4 +71,22 @@ public class Service {
         this.eventConstructor.updateEvent(this.familyTreeService.getEvent(eventId), event_name, event_date, placeName);
 
     }
+
+    public FamilyTree getFamilyTree(){
+        return this.familyTreeService.getFamilyTree();
+    }
+
+    public static void saveFamilyTree (String filePatch, FamilyTree familyTree){
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.setFilePath(filePatch);
+        fileHandler.write(familyTree);
+    }
+
+    public static FamilyTree loadFamilyTree (String filePatch){
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.setFilePath(filePatch);
+        return (FamilyTree)fileHandler.read();
+    }
+
+
 }

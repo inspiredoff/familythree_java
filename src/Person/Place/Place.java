@@ -1,6 +1,8 @@
 package Person.Place;
 
-public class Place {
+import java.io.Serializable;
+
+public class Place implements Serializable{
     private int placeId;
     private String placeName;
 
