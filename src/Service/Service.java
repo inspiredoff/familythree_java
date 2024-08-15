@@ -1,12 +1,11 @@
 package Service;
 
+import FamilyTree.FamilyTree;
+import Filehandler.FileHandler;
 import Person.Event.Event;
 import Person.Human;
 
 import java.time.LocalDate;
-
-import FamilyTree.FamilyTree;
-import Filehandler.FileHandler;
 
 public class Service {
     private EventConstructor eventConstructor;
@@ -72,11 +71,8 @@ public class Service {
 
     }
 
-    public FamilyTree getFamilyTree(){
-        return this.familyTreeService.getFamilyTree();
-    }
-
-    public static void saveFamilyTree (String filePatch, FamilyTree familyTree){
+    public void saveFamilyTree(String filePatch, Integer familyTreeId) {
+        FamilyTree familyTree = this.familyTreeService.getFamilyTree(familyTreeId);
         FileHandler fileHandler = new FileHandler();
         fileHandler.setFilePath(filePatch);
         fileHandler.write(familyTree);

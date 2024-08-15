@@ -68,8 +68,13 @@ public class FamilyTreeService {
         familyTree.deleteHuman(humanId);
     }
 
-    public  FamilyTree getFamilyTree(){
-        return this.familyTree;
+    public FamilyTree getFamilyTree(int familyTreeId) {
+        for (FamilyTree familyTree : listFamilyTrees) {
+            if (familyTree.getFamilyTreeId() == familyTreeId) {
+                return familyTree;
+            }
+        }
+        return null;
     }
 
     public List<FamilyTree> getAllFamilyTree(){
@@ -83,8 +88,6 @@ public class FamilyTreeService {
             }
         }
     }
-
-
 
     public Event getBornEventByHuman(int humanId){
         for (Event event : this.familyTree.getAllEvent()) {
