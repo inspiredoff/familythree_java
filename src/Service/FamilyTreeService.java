@@ -3,6 +3,9 @@ package Service;
 import FamilyTree.FamilyTree;
 import Person.Event.Event;
 import Person.Human;
+import Service.Comparator.ComparatorHumanByAge;
+import Service.Comparator.ComparatorHumanById;
+import Service.Comparator.ComparatorHumanByName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +44,13 @@ public class FamilyTreeService {
     }
 
     public void printHumanInFamilyTree(){
-        for (Human human: this.familyTree.getAllHuman()) {
+        for (Human human : this.familyTree.getListHuman()) {
             System.out.println(human);
         }
     }
 
     public void printEventInFamilyTree(){
-        for (Event event: this.familyTree.getAllEvent()) {
+        for (Event event : this.familyTree.getListEvent()) {
             System.out.println(event);
         }
     }
@@ -57,7 +60,7 @@ public class FamilyTreeService {
     }
 
     public void updateEvent(int eventId){
-        for (Event event: this.familyTree.getAllEvent()) {
+        for (Event event : this.familyTree.getListEvent()) {
             if (event.getEvent_id() == eventId) {
                 this.familyTree.removeEvent(eventId);
             }
@@ -90,12 +93,27 @@ public class FamilyTreeService {
     }
 
     public Event getBornEventByHuman(int humanId){
-        for (Event event : this.familyTree.getAllEvent()) {
+        for (Event event : this.familyTree.getListEvent()) {
             if (event.getEventName().equals("born") && event.getPersons().get(0).getHumanId() == humanId) {
                 return event;
             }
         }
         return null;
+    }
+
+    public void sortHumanByName() {
+        List<Human> humanList = this.familyTree.getListHuman();
+        humanList.sort(new ComparatorHumanByName());
+    }
+
+    public void sortHumanByAge() {
+        List<Human> humanList = this.familyTree.getListHuman();
+        humanList.sort(new ComparatorHumanByAge());
+    }
+
+    public void sortHumanById() {
+        List<Human> humanList = this.familyTree.getListHuman();
+        humanList.sort(new ComparatorHumanById());
     }
 
 

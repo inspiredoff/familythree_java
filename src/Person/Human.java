@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public class Human implements Serializable{
+
     public enum gender {
         male,
         female
@@ -207,13 +208,12 @@ public class Human implements Serializable{
         this.children.addAll(children);
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public int getAge() {
+        if (death_date != null) {
+            return death_date.getYear() - birth_date.getYear();
+        } else {
+            return LocalDate.now().getYear() - birth_date.getYear();
+        }
     }
-
-    public void setEvents(List<Event> event) {
-        this.events.addAll(event);
-    }
-    
 }
 

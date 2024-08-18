@@ -39,11 +39,11 @@ public class FamilyTree implements Serializable {
         return null;
     }
 
-    public List<Human> getAllHuman() {
+    public List<Human> getListHuman() {
         return humans;
     }
 
-    public List<Event> getAllEvent() {
+    public List<Event> getListEvent() {
         return events;
     }
 

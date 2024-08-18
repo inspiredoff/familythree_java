@@ -41,6 +41,8 @@ public class Service {
         this.humanConstructor.newHuman(human)
                             .humanSetParent(father, mother)
                             .build();
+        this.humanConstructor.newHuman(father
+
         // this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId),null , null, null, human, father, mother);
     }
 
@@ -69,6 +71,18 @@ public class Service {
     public void updateEvent(int eventId, String event_name, LocalDate event_date, String placeName){
         this.eventConstructor.updateEvent(this.familyTreeService.getEvent(eventId), event_name, event_date, placeName);
 
+    }
+
+    public void sortHumanByName() {
+        this.familyTreeService.sortHumanByName();
+    }
+
+    public void sortHumanByAge() {
+        this.familyTreeService.sortHumanByAge();
+    }
+
+    public void sortHumanById() {
+        this.familyTreeService.sortHumanById();
     }
 
     public void saveFamilyTree(String filePatch, Integer familyTreeId) {
