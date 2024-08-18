@@ -41,9 +41,10 @@ public class Service {
         this.humanConstructor.newHuman(human)
                             .humanSetParent(father, mother)
                             .build();
-        this.humanConstructor.newHuman(father
-
-        // this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId),null , null, null, human, father, mother);
+        this.humanConstructor.newHuman(father).setChildren(human).build();
+        this.humanConstructor.newHuman(mother).setChildren(human).build();
+        System.out.println(familyTreeService.getBornEventByHuman(humanId));
+        this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId), null, null, null, father, mother);
     }
 
     public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName){

@@ -3,6 +3,7 @@ package Service;
 import Person.Human;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class HumanConstructor {
     private Human human;
@@ -50,6 +51,11 @@ public class HumanConstructor {
 
     public HumanConstructor humanSetDeathDate(LocalDate deathDate){
         human.setDeathDate(deathDate);
+        return this;
+    }
+
+    public HumanConstructor setChildren(Human children) {
+        human.setChildren(List.of(children));
         return this;
     }
 

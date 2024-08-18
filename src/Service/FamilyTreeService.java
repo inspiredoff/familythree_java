@@ -93,12 +93,13 @@ public class FamilyTreeService {
     }
 
     public Event getBornEventByHuman(int humanId){
+        Event e = null;
         for (Event event : this.familyTree.getListEvent()) {
-            if (event.getEventName().equals("born") && event.getPersons().get(0).getHumanId() == humanId) {
-                return event;
+            if (event.getEventName().equals("born Human") && event.getPersons().get(0).getHumanId() == humanId) {
+                e = event;
             }
         }
-        return null;
+        return e;
     }
 
     public void sortHumanByName() {

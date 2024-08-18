@@ -23,7 +23,7 @@ public class EventConstructor {
     }
 
     public Event bornEvent (LocalDate event_date, String placeName, Human...humans) {
-        return newEvent("bornchild", event_date, placeName, List.of(humans));
+        return newEvent("born Human", event_date, placeName, List.of(humans));
     }
 
     public Event wendingEvent (LocalDate event_date, String placeName, Human...person) {
@@ -34,6 +34,6 @@ public class EventConstructor {
         if (eventName != null) event.setEvent_name(eventName);
         if (eventDate != null) event.setEvent_date(eventDate);
         if (placeName != null) event.setPlace(new Place(placeId++, placeName));
-        if (persons != null) event.setPerson(persons);
+        if (persons != null) event.setPerson(List.of(persons));
     }
     }

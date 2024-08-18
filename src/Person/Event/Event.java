@@ -5,6 +5,7 @@ import Person.Place.Place;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event implements Serializable {
@@ -19,7 +20,8 @@ public class Event implements Serializable {
         this.event_id = eventId;
         this.event_name = event_name;
         this.event_date = event_date;
-        this.persons = persons;
+        this.persons = new ArrayList<>();
+        this.persons.addAll(persons);
         this.place = place;
     }
 
@@ -55,7 +57,7 @@ public class Event implements Serializable {
         this.place = place;
     }
 
-    public void setPerson(Human...person){
+    public void setPerson(List<Human> persons) {
         this.persons.addAll(persons);
     }
 
