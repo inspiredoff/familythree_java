@@ -1,4 +1,4 @@
-import Person.Human;
+import Model.Person.Human;
 import Service.Service;
 
 import java.time.LocalDate;

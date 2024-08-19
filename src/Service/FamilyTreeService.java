@@ -1,8 +1,9 @@
 package Service;
 
-import FamilyTree.FamilyTree;
-import Person.Event.Event;
-import Person.Human;
+import Model.Event.Event;
+import Model.EventDatabase.EventDatabase;
+import Model.FamilyTree.FamilyTree;
+import Model.Person.Human;
 import Service.Comparator.ComparatorHumanByAge;
 import Service.Comparator.ComparatorHumanById;
 import Service.Comparator.ComparatorHumanByName;
@@ -13,18 +14,25 @@ import java.util.List;
 public class FamilyTreeService {
     private int familyTreeId;
     private FamilyTree familyTree;
+    private EventDatabase eventDatabase;
     private List<FamilyTree> listFamilyTrees;
+    private List<EventDatabase> listEvents;
 
 
     public FamilyTreeService() {
         this.listFamilyTrees = new ArrayList<>();
+        this.listEvents = new ArrayList<>();
 
     }
 
-    public void createFamilyTree(String FamilyTreeName){
-        FamilyTree familyTree = new FamilyTree(familyTreeId++, FamilyTreeName);
+    public void createFamilyTree(String Name) {
+        FamilyTree familyTree = new FamilyTree(familyTreeId, Name + "_FamilyTree");
+        EventDatabase eventDatabase = new EventDatabase(familyTreeId++, Name + "_Event");
         this.listFamilyTrees.add(familyTree);
+        this.listEvents.add(eventDatabase);
         this.familyTree = familyTree;
+        this.eventDatabase = eventDatabase;
+
     }
 
     public void addHuman(Human human){
@@ -32,11 +40,11 @@ public class FamilyTreeService {
     }
 
     public void addEvent(Event event){
-        this.familyTree.addEvent(event);
+        this.eventDatabase.add(event);
     }
 
     public Event getEvent(int eventId){
-        return this.familyTree.getEvent(eventId);
+        return (Event) this.eventDatabase.getObject(eventId);
     }
 
     public Human getHuman(int humanId){
@@ -50,7 +58,7 @@ public class FamilyTreeService {
     }
 
     public void printEventInFamilyTree(){
-        for (Event event : this.familyTree.getListEvent()) {
+        for (Event event : this.eventDatabase.getObjectList()) {
             System.out.println(event);
         }
     }

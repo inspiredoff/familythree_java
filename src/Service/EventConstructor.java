@@ -1,8 +1,8 @@
 package Service;
 
-import Person.Event.Event;
-import Person.Human;
-import Person.Place.Place;
+import Model.Event.Event;
+import Model.Person.Human;
+import Model.Place.Place;
 
 import java.time.LocalDate;
 import java.util.List;

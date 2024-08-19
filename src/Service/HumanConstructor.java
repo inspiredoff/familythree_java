@@ -1,6 +1,6 @@
 package Service;
 
-import Person.Human;
+import Model.Person.Human;
 
 import java.time.LocalDate;
 import java.util.List;

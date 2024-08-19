@@ -1,6 +1,6 @@
-package Person;
+package Model.Person;
 
-import Person.Event.Event;
+import Model.Event.Event;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class Human implements Serializable{
     private Human spouse;
     private List<Human> children;
     private List<Event> events;
-    // private List<Person.Place> places;
+    // private List<model.Person.Place> places;
     
 
 

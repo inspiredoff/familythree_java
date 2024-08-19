@@ -1,7 +1,7 @@
-package FamilyTree;
+package Model.FamilyTree;
 
-import Person.Event.Event;
-import Person.Human;
+import Model.Event.Event;
+import Model.Person.Human;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,10 +43,6 @@ public class FamilyTree implements Serializable {
         return humans;
     }
 
-    public List<Event> getListEvent() {
-        return events;
-    }
-
    public void deleteHuman(int human_id) {
        Human human = getHuman(human_id);
        if (human != null) {
@@ -70,20 +66,6 @@ public class FamilyTree implements Serializable {
 
     public void addHuman(Human human) {
         humans.add(human);
-    }
-
-    public void addEvent(Event event) {
-        events.add(event);
-    }
-
-   
-
-    public void removeEvent(int event_id) {
-        for (Event event : events) {
-            if (event.getEvent_id() == event_id) {
-                events.remove(event);
-            }
-        }
     }
     
     public Integer getFamilyTreeId() {

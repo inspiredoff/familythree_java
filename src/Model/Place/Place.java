@@ -1,4 +1,4 @@
-package Person.Place;
+package Model.Place;
 
 import java.io.Serializable;
 

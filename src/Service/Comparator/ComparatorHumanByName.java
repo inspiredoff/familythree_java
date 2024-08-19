@@ -1,6 +1,6 @@
 package Service.Comparator;
 
-import Person.Human;
+import Model.Person.Human;
 
 import java.util.Comparator;
 

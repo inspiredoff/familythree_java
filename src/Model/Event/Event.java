@@ -1,14 +1,15 @@
-package Person.Event;
+package Model.Event;
 
-import Person.Human;
-import Person.Place.Place;
+import Model.BaseModel;
+import Model.Person.Human;
+import Model.Place.Place;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event implements Serializable {
+public class Event extends BaseModel implements Serializable {
 
     private int event_id;
     private String event_name;
