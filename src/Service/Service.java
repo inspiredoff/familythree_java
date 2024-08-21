@@ -3,19 +3,17 @@ package Service;
 import Filehandler.FileHandler;
 import Model.Event.Event;
 import Model.Human.Human;
-import Model.HumanDatabase.FamilyTree;
 
 import java.time.LocalDate;
 
 public class Service {
-    private EventConstructor eventConstructor;
-    private FamilyTreeService familyTreeService;
-    private HumanConstructor humanConstructor;
 
-    public Service() {
-        this.eventConstructor = new EventConstructor();
-        this.humanConstructor = new HumanConstructor();
-        this.familyTreeService = new FamilyTreeService();
+    private HumanConstructor humanConstructor;
+    private EventConstructor eventConstructor;
+
+    public Service(Service.constructors.HumanConstructor humanConstructor, Service.constructors.EventConstructor eventConstructor) {
+        this.humanConstructor = humanConstructor;
+        this.eventConstructor = eventConstructor;
     }
 
     public void setFamilyTree(int familyTreeId) {

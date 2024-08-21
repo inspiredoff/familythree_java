@@ -15,8 +15,9 @@ public class Event implements Serializable, Entity {
     private List<Human> persons;
     private LocalDate event_date;
     private Place place;
+    private int familyTreeId;
 
-    public Event(int eventId,String event_name, LocalDate event_date, Place place, List<Human> persons) {
+    public Event(int eventId, String event_name, LocalDate event_date, Place place, int familyTreeId, List<Human> persons) {
         this.event_id = eventId;
         this.event_name = event_name;
         this.event_date = event_date;
@@ -69,6 +70,14 @@ public class Event implements Serializable, Entity {
     public String toString() {
         return "Event [event_id=" + event_id + ", event_name=" + event_name + ", persons=" + persons + ", event_date="
                 + event_date + ", place=" + place + "]";
+    }
+
+    public void setFamilyTreeId(int familyTreeId) {
+        this.familyTreeId = familyTreeId;
+    }
+
+    public int getFamilyTreeId() {
+        return familyTreeId;
     }
 
     

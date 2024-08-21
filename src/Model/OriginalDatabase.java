@@ -37,4 +37,14 @@ public abstract class OriginalDatabase<T extends Entity> {
     public void addEntity(T model) {
         objectList.add(model);
     }
+
+    public List<T> getFamilyTree(int familyTreeId) {
+        List<T> list = new ArrayList<>();
+        for (T t : objectList) {
+            if (t.getFamilyTreeId() == familyTreeId) {
+                list.add(t);
+            }
+        }
+        return list;
+    }
 }

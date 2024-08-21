@@ -1,7 +1,6 @@
 package Model.Human;
 
 import Model.Entity;
-import Model.Event.Event;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,6 +25,7 @@ public class Human implements Serializable, Entity{
     private Human father;
     private Human spouse;
     private List<Human> children;
+    private int familyTreeId;
     // private List<model.Person.Place> places;
     
 
@@ -40,7 +40,8 @@ public class Human implements Serializable, Entity{
             Human father,
             Human mother,
             Human spouse,
-            List<Human> children
+            List<Human> children,
+            int familyTreeId
             ) {
         this.first_name = first_name;
         this.last_name = last_name;
@@ -52,6 +53,7 @@ public class Human implements Serializable, Entity{
         this.mother = mother;
         this.spouse = spouse;
         this.children = children;
+        this.familyTreeId = familyTreeId;
     }
  
     public Human() {
@@ -205,6 +207,14 @@ public class Human implements Serializable, Entity{
         } else {
             return LocalDate.now().getYear() - birth_date.getYear();
         }
+    }
+
+    public int getFamilyTreeId() {
+        return familyTreeId;
+    }
+
+    public void setFamilyTreeId(int familyTreeId) {
+        this.familyTreeId = familyTreeId;
     }
 }
 
