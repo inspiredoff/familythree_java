@@ -2,8 +2,7 @@ package Service;
 
 import Model.Event.Event;
 import Model.EventDatabase.EventDatabase;
-import Model.FamilyTree.FamilyTree;
-import Model.Person.Human;
+import Model.HumanDatabase.HumanDatabase;
 import Service.Comparator.ComparatorHumanByAge;
 import Service.Comparator.ComparatorHumanById;
 import Service.Comparator.ComparatorHumanByName;
@@ -13,19 +12,16 @@ import java.util.List;
 
 public class FamilyTreeService {
     private int familyTreeId;
-    private FamilyTree familyTree;
+    private HumanDatabase humanDatabase;
     private EventDatabase eventDatabase;
-    private List<FamilyTree> listFamilyTrees;
-    private List<EventDatabase> listEvents;
-
 
     public FamilyTreeService() {
-        this.listFamilyTrees = new ArrayList<>();
-        this.listEvents = new ArrayList<>();
-
+        this.humanDatabase = humanDatabase;
+        this.eventDatabase = eventDatabase;
     }
 
     public void createFamilyTree(String Name) {
+
         FamilyTree familyTree = new FamilyTree(familyTreeId, Name + "_FamilyTree");
         EventDatabase eventDatabase = new EventDatabase(familyTreeId++, Name + "_Event");
         this.listFamilyTrees.add(familyTree);

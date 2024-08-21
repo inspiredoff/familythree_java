@@ -1,8 +1,8 @@
 package Service.Comparator;
 
-import Model.Person.Human;
-
 import java.util.Comparator;
+
+import Model.Human.Human;
 
 public class ComparatorHumanByName implements Comparator<Human> {
     @Override

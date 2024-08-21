@@ -1,13 +1,15 @@
 package Service;
 
 import Model.Event.Event;
-import Model.Person.Human;
+import Model.EventDatabase.EventDatabase;
+import Model.Human.Human;
 import Model.Place.Place;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class EventConstructor {
+public class EventDatabaseService extends DataBaseService<EventDatabase> {
+
     private int id;
     private int placeId;
 

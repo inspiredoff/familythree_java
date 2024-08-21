@@ -1,7 +1,6 @@
 package Model.Event;
-
-import Model.BaseModel;
-import Model.Person.Human;
+import Model.Entity;
+import Model.Human.Human;
 import Model.Place.Place;
 
 import java.io.Serializable;
@@ -9,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event extends BaseModel implements Serializable {
+public class Event implements Serializable, Entity {
 
     private int event_id;
     private String event_name;
@@ -26,7 +25,7 @@ public class Event extends BaseModel implements Serializable {
         this.place = place;
     }
 
-    public int getEvent_id() {
+    public int getId() {
         return event_id;
     }
 

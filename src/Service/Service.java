@@ -2,8 +2,8 @@ package Service;
 
 import Filehandler.FileHandler;
 import Model.Event.Event;
-import Model.FamilyTree.FamilyTree;
-import Model.Person.Human;
+import Model.Human.Human;
+import Model.HumanDatabase.FamilyTree;
 
 import java.time.LocalDate;
 

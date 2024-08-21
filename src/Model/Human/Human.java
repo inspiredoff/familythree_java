@@ -1,5 +1,6 @@
-package Model.Person;
+package Model.Human;
 
+import Model.Entity;
 import Model.Event.Event;
 
 import java.io.Serializable;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Human implements Serializable{
+public class Human implements Serializable, Entity{
 
     public enum gender {
         male,
@@ -25,7 +26,6 @@ public class Human implements Serializable{
     private Human father;
     private Human spouse;
     private List<Human> children;
-    private List<Event> events;
     // private List<model.Person.Place> places;
     
 
@@ -52,13 +52,10 @@ public class Human implements Serializable{
         this.mother = mother;
         this.spouse = spouse;
         this.children = children;
-        this.events = new ArrayList<>();
-        // this.places = new ArrayList<>();
     }
  
     public Human() {
         this.children = new ArrayList<>();
-        this.events = new ArrayList<>();
     }
    
     @Override
@@ -75,8 +72,6 @@ public class Human implements Serializable{
                 ", father=" + getFatherFullName() +
                 ", spouse=" + getSpouseFullName() +
                 ", children=" + getChildrenFullName() +
-//                ", events=" + events +
-                // ", places=" + places +
                 '}';
     }
    
@@ -99,11 +94,7 @@ public class Human implements Serializable{
     private String getSpouseFullName() {
         if (getSpouse() == null) {
             return "single/divorced";
-        } else {//                ", mother=" + getMotherFullName() +
-//                ", father=" + getFatherFullName() +
-//                ", spouse=" + getSpouseFullName() +
-//                ", children=" + getChildrenFullName() +
-//                ", events=" + getEvents() +
+        } else {
             return spouse.getFirstName() + " " + spouse.getLastName();
         }
     }
@@ -120,7 +111,7 @@ public class Human implements Serializable{
         }
     }
 
-    public int getHumanId() {
+    public int getId() {
         return human_id;
     }
 

@@ -1,7 +1,8 @@
-import Model.Person.Human;
 import Service.Service;
 
 import java.time.LocalDate;
+
+import Model.Human.Human;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

@@ -1,32 +1,18 @@
 package Model.EventDatabase;
-
-import Model.BaseModel;
-import Model.TreeDatabase;
+import Model.OriginalDatabase;
+import Model.Event.Event;
 
 import java.util.List;
 
-public class EventDatabase extends TreeDatabase {
-    @Override
-    public List<BaseModel> getObjectList() {
-        return super.getObjectList();
+public class EventDatabase extends OriginalDatabase<Event> {
+    
+    public EventDatabase(int id) {
+        super(id);
     }
 
     @Override
-    public BaseModel getObject(int id) {
-        return super.getObject(id);
+    public String getDatabaseName() {
+        return "human-database";
     }
 
-    @Override
-    public void remove(int id) {
-        super.remove(id);
-    }
-
-    @Override
-    public void add(BaseModel model) {
-        super.add(model);
-    }
-
-    public EventDatabase(int id, String name) {
-        super(id, name);
-    }
 }
