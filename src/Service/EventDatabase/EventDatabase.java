@@ -1,8 +1,7 @@
-package Model.EventDatabase;
-import Model.OriginalDatabase;
-import Model.Event.Event;
+package Service.EventDatabase;
 
-import java.util.List;
+import Model.Event.Event;
+import Model.OriginalDatabase;
 
 public class EventDatabase extends OriginalDatabase<Event> {
     

@@ -1,13 +1,13 @@
 package Service;
 
 import Filehandler.FileHandler;
-import Model.OriginalDatabase;
 import Model.Event.Event;
-import Model.EventDatabase.EventDatabase;
 import Model.Human.Human;
-import Model.HumanDatabase.HumanDatabase;
+import Model.OriginalDatabase;
+import Service.EventDatabase.EventDatabase;
+import Service.HumanDatabase.HumanDatabase;
+import Service.constructors.EntityConstructor;
 import Service.constructors.EventConstructor;
-import Service.constructors.HumanConstructor;
 
 import java.time.LocalDate;
 
@@ -19,7 +19,7 @@ public class Service {
     private InterEventConstructor eventConstructor;
 
     public Service() {
-        this.humanConstructor =new HumanConstructor();
+        this.humanConstructor = new EntityConstructor();
         this.eventConstructor = new EventConstructor();
         this.humanDb = new HumanDatabase(0);
         this.eventDb = new EventDatabase(0);

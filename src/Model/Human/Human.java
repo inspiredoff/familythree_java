@@ -1,6 +1,7 @@
 package Model.Human;
 
-import Model.Entity;
+import Model.EntityPerson;
+import Model.Gender;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -8,19 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Human implements Serializable, Entity{
+public class Human implements Serializable, EntityPerson<Human> {
 
-    public enum gender {
-        male,
-        female
-    }
+    private Gender gender;
     private int human_id;
     private String first_name;
     private String last_name;
     private String family_name;
     private LocalDate birth_date;
     private LocalDate death_date;
-    private gender gender;
     private Human mother;
     private Human father;
     private Human spouse;
@@ -36,7 +33,7 @@ public class Human implements Serializable, Entity{
             String family_name,
             LocalDate birth_date,
             LocalDate death_date,
-            gender gender,
+            Gender gender,
             Human father,
             Human mother,
             Human spouse,
@@ -117,13 +114,14 @@ public class Human implements Serializable, Entity{
         return human_id;
     }
 
-    public void setHumanId(int human_id) {
+    public void setId(int human_id) {
         this.human_id = human_id;
     }
 
     public String getFirstName() {
         return first_name;
     }
+
 
     public void setFirstName(String first_name) {
         this.first_name = first_name;
@@ -161,11 +159,11 @@ public class Human implements Serializable, Entity{
         this.death_date = death_date;
     }
 
-    public gender getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(gender gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

@@ -1,27 +1,28 @@
 package Service;
 
-import Model.Human.Human;
+import Model.EntityPerson;
+import Model.Gender;
 
 import java.time.LocalDate;
 
-public interface InterEntityConstructor {
+public interface InterEntityConstructor<T extends EntityPerson<T>> {
 
-    public InterEntityConstructor newEntity (Human human);
+    public InterEntityConstructor<T> newEntity(T person);
 
-    public InterEntityConstructor newEntity (String firstName, String lastName, String familyName, Human.gender gender, int familyTreeId);
+    public InterEntityConstructor<T> newEntity(String firstName, String lastName, String familyName, Gender gender, int familyTreeId);
 
-    public InterEntityConstructor setName(String firstName, String lastName, String familyName, Human.gender gender, int familyTreeid);
+    public InterEntityConstructor<T> setName(String firstName, String lastName, String familyName, Gender gender, int familyTreeid);
 
-    public InterEntityConstructor setParent(Human father, Human mother);
+    public InterEntityConstructor<T> setParent(T father, T mother);
 
-    public InterEntityConstructor setSpouce(Human spouce);
+    public InterEntityConstructor<T> setSpouce(T spouce);
 
-    public InterEntityConstructor setBirthDate(LocalDate birthDate);
+    public InterEntityConstructor<T> setBirthDate(LocalDate birthDate);
 
-    public InterEntityConstructor setDeathDate(LocalDate deathDate);
+    public InterEntityConstructor<T> setDeathDate(LocalDate deathDate);
 
-    public InterEntityConstructor setChildren(Human children);
+    public InterEntityConstructor<T> setChildren(T children);
 
-    public Human build();
+    public T build();
 }
 
