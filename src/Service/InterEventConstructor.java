@@ -6,7 +6,7 @@ import Model.Human.Human;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface EventConstructor {
+public interface InterEventConstructor {
 
     Event newEvent(String event_name, LocalDate event_date, String placeName, int familyTree_id, List<Human> persons);
 

@@ -1,11 +1,12 @@
 package Service.constructors;
 
 import Model.Human.Human;
+import Service.InterEntityConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class HumanConstructor implements Service.HumanConstructor {
+public class HumanConstructor implements InterEntityConstructor {
     private Human human;
     private int id;
 
@@ -13,18 +14,22 @@ public class HumanConstructor implements Service.HumanConstructor {
         this.human = new Human();
     }
 
-    public HumanConstructor newHuman(Human human) {
+    @Override
+    public HumanConstructor newEntity(Human human) {
         this.human = human;
         return this;
     }
 
-    public HumanConstructor newHuman(String firstName, String lastName, String familyName, Human.gender gender, int familyTreeId) {
+    @Override
+    public HumanConstructor newEntity(String firstName, String lastName, String familyName, Human.gender gender, int familyTreeId) {
         this.human = new Human();
-        humanSetName(firstName, lastName, familyName, gender, familyTreeId);
+        setName(firstName, lastName, familyName, gender, familyTreeId);
         return this;
     }
 
-    public HumanConstructor humanSetName(String firstName, String lastName, String familyName, Human.gender gender, int familyTreeid) {
+
+    @Override
+    public HumanConstructor setName(String firstName, String lastName, String familyName, Human.gender gender, int familyTreeid) {
         human.setHumanId(id++);
         human.setFirstName(firstName);
         human.setLastName(lastName);
@@ -34,27 +39,32 @@ public class HumanConstructor implements Service.HumanConstructor {
         return this;
     }
 
-    public HumanConstructor humanSetParent(Human father, Human mother) {
+    @Override
+    public HumanConstructor setParent(Human father, Human mother) {
         human.setFather(father);
         human.setMother(mother);
         return this;
     }
 
-    public HumanConstructor humanSetSpouce(Human spouce) {
+    @Override
+    public HumanConstructor setSpouce(Human spouce) {
         human.setSpouse(spouce);
         return this;
     }
 
-    public HumanConstructor humanSetBirthDate(LocalDate birthDate) {
+    @Override
+    public HumanConstructor setBirthDate(LocalDate birthDate) {
         human.setBirthDate(birthDate);
         return this;
     }
 
-    public HumanConstructor humanSetDeathDate(LocalDate deathDate) {
+    @Override
+    public HumanConstructor setDeathDate(LocalDate deathDate) {
         human.setDeathDate(deathDate);
         return this;
     }
 
+    @Override
     public HumanConstructor setChildren(Human children) {
         human.setChildren(List.of(children));
         return this;
@@ -64,6 +74,7 @@ public class HumanConstructor implements Service.HumanConstructor {
         this.human = null;
     }
 
+    @Override
     public Human build() {
         Human resHuman = human;
         refresh();

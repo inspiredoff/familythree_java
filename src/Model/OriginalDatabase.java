@@ -47,4 +47,10 @@ public abstract class OriginalDatabase<T extends Entity> {
         }
         return list;
     }
+
+    public void sortHumanById() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'sortHumanById'");
+    }
+    
 }
