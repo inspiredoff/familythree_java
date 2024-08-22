@@ -22,8 +22,8 @@ public class Service {
     public Service() {
         this.humanConstructor = new PersonConstructor();
         this.eventConstructor = new EventConstructor();
-        this.humanDb = new HumanDatabase(0);
-        this.eventDb = new EventDatabase(0);
+        this.humanDb = new HumanDatabase();
+        this.eventDb = new EventDatabase();
     }
 
 // create FamilyTree
@@ -40,11 +40,11 @@ public void createNewTree() {
 //createHuman
 
 
-    public void bornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Gender gender, int familyTreeId) {
-        Human human = humanConstructor.newEntity(firstName, lastName, familyName, gender, familyTreeId)
+    public void bornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Gender gender) {
+        Human human = humanConstructor.newEntity(firstName, lastName, familyName, gender, this.familyTreeid)
                                 .setBirthDate(birthDate)
                                 .build();
-        Event event = eventConstructor.bornEvent(birthDate, placeName, 0, human);
+        Event event = eventConstructor.bornEvent(birthDate, placeName, this.familyTreeid, human);
         this.humanDb.addEntity(human);
         this.eventDb.addEntity(event);
     }
@@ -58,14 +58,14 @@ public void createNewTree() {
                             .build();
         this.humanConstructor.newEntity(father).setChildren(human).build();
         this.humanConstructor.newEntity(mother).setChildren(human).build();
-        // System.out.println(familyTreeService.getBornEventByHuman(humanId));
-        // this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId), null, null, null, father, mother);
+//         System.out.println(familyTreeService.getBornEventByHuman(humanId));
+//         this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId), null, null, null, father, mother);
     }
 
-    public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName, int familyTreeId){
+    public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName) {
         Human wife = (Human) this.humanDb.getById(wideId);
         Human husband = (Human) this.humanDb.getById(husbandId);
-        Event event = this.eventConstructor.wendingEvent(wendingDate, placeName,familyTreeId, wife, husband);
+        Event event = this.eventConstructor.wendingEvent(wendingDate, placeName, this.familyTreeid, wife, husband);
         this.eventDb.addEntity(event);
     }
 

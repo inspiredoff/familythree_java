@@ -7,11 +7,9 @@ import java.util.List;
 
 
 public abstract class OriginalDatabase<T extends Entity> {
-    private int id;
     protected List<T> objectList;
 
-    public OriginalDatabase(int id) {
-        this.id = id;
+    public OriginalDatabase() {
         this.objectList = new ArrayList<>();
     }
 

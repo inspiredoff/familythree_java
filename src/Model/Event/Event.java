@@ -30,7 +30,7 @@ public class Event implements Serializable, Entity {
         return event_id;
     }
 
-    public void setEventId(int event_id) {
+    public void setId(int event_id) {
         this.event_id = event_id;
     }
 

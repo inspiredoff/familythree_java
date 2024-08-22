@@ -12,8 +12,8 @@ import java.io.Serializable;
 public class HumanDatabase extends OriginalDatabase<Human> implements Serializable {
 
 
-    public HumanDatabase(int id) {
-        super(id);
+    public HumanDatabase() {
+        super();
     }
 
     @Override
