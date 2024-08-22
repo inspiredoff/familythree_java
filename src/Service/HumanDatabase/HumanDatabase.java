@@ -1,10 +1,10 @@
 package Service.HumanDatabase;
 
 import Model.Human.Human;
-import Model.OriginalDatabase;
 import Service.Comparator.ComparatorHumanByAge;
 import Service.Comparator.ComparatorHumanById;
 import Service.Comparator.ComparatorHumanByName;
+import Service.OriginalDatabase;
 
 import java.io.Serializable;
 

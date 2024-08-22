@@ -1,7 +1,7 @@
 package Service.EventDatabase;
 
 import Model.Event.Event;
-import Model.OriginalDatabase;
+import Service.OriginalDatabase;
 
 public class EventDatabase extends OriginalDatabase<Event> {
     

@@ -1,4 +1,6 @@
-package Model;
+package Service;
+
+import Model.Entity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,43 +2,45 @@ package Service;
 
 import Filehandler.FileHandler;
 import Model.Event.Event;
+import Model.Gender;
 import Model.Human.Human;
-import Model.OriginalDatabase;
 import Service.EventDatabase.EventDatabase;
 import Service.HumanDatabase.HumanDatabase;
-import Service.constructors.EntityConstructor;
 import Service.constructors.EventConstructor;
+import Service.constructors.PersonConstructor;
 
 import java.time.LocalDate;
 
 public class Service {
 
-    private OriginalDatabase humanDb;
-    private OriginalDatabase eventDb;
-    private InterEntityConstructor humanConstructor;
+    private OriginalDatabase<Human> humanDb;
+    private OriginalDatabase<Event> eventDb;
+    private int familyTreeid;
+    private InterPersonConstructor<Human> humanConstructor;
     private InterEventConstructor eventConstructor;
 
     public Service() {
-        this.humanConstructor = new EntityConstructor();
+        this.humanConstructor = new PersonConstructor();
         this.eventConstructor = new EventConstructor();
         this.humanDb = new HumanDatabase(0);
         this.eventDb = new EventDatabase(0);
     }
 
 // create FamilyTree
-    public void setFamilyTree(int familyTreeId) {
-        this.familyTreeService.setFamilyTree(familyTreeId);
-    }
-    public void createNewTree(String FamilyTreeeName) {
-        this.familyTreeService.createFamilyTree(FamilyTreeeName);
+//    public void setFamilyTree(int familyTreeId)
+//    {
+//        this.humanDb.getFamilyTree(familyTreeId);
+//
+//    }
+public void createNewTree() {
+    this.familyTreeid++;
     }
 
 
 //createHuman
 
-    
 
-    public void bornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Human.gender gender, int familyTreeId) {
+    public void bornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Gender gender, int familyTreeId) {
         Human human = humanConstructor.newEntity(firstName, lastName, familyName, gender, familyTreeId)
                                 .setBirthDate(birthDate)
                                 .build();
@@ -83,13 +85,13 @@ public class Service {
 
 // print
 
-    // public void printFamilyTreeHuman(){
-    //     this.familyTreeService.printHumanInFamilyTree();
-    // }
+    public void printFamilyTreeHuman() {
+        System.out.println(this.humanDb.getFamilyTree(familyTreeid));
+    }
 
-    // public void printEventInFamilyTree(){
-    //    this.familyTreeService.printEventInFamilyTree();
-    // }
+    public void printEventInFamilyTree() {
+        System.out.println(this.eventDb.getFamilyTree(familyTreeid));
+    }
 
 // sort
     public void sortHumanByName() {
