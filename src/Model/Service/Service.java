@@ -1,13 +1,13 @@
-package Service;
+package Model.Service;
 
-import Filehandler.FileHandler;
-import Model.Event.Event;
-import Model.Gender;
-import Model.Human.Human;
-import Service.EventDatabase.EventDatabase;
-import Service.HumanDatabase.HumanDatabase;
-import Service.constructors.EventConstructor;
-import Service.constructors.PersonConstructor;
+import Model.Filehandler.FileHandler;
+import Model.Models.Event.Event;
+import Model.Models.Gender;
+import Model.Models.Human.Human;
+import Model.Service.EventDatabase.EventDatabase;
+import Model.Service.HumanDatabase.HumanDatabase;
+import Model.Service.constructors.EventConstructor;
+import Model.Service.constructors.PersonConstructor;
 
 import java.time.LocalDate;
 
@@ -106,16 +106,20 @@ public void createNewTree() {
         this.humanDb.sortHumanById();
     }
 // save load
-    public void saveFamilyTree(String filePatch, Integer familyTreeId) {
-        HumanDatabase familyTree = (HumanDatabase) this.humanDb.getFamilyTree(familyTreeId);
+    public void saveFamilyTree(String filePatchHumandb, String filePatchEventdb, Integer familyTreeId) {
+        HumanDatabase humanDatabase = (HumanDatabase) this.humanDb.getFamilyTree(familyTreeId);
+        EventDatabase eventDatabase = (EventDatabase) this.eventDb.getFamilyTree(familyTreeId);
         FileHandler fileHandler = new FileHandler();
-        fileHandler.setFilePath(filePatch);
-        fileHandler.write(familyTree);
+        fileHandler.setFilePath(filePatchHumandb);
+        fileHandler.write(humanDatabase);
+        FileHandler fileHandlerEvent = new FileHandler();
+        fileHandlerEvent.setFilePath(filePatchEventdb);
+        fileHandlerEvent.write(eventDatabase);
     }
 
-    public static HumanDatabase loadFamilyTree (String filePatch){
+    public void loadFamilyTree (String filePatch){
         FileHandler fileHandler = new FileHandler();
         fileHandler.setFilePath(filePatch);
-        return (HumanDatabase) fileHandler.read();
+        fileHandler.read();
     }
 }

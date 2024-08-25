@@ -1,4 +1,4 @@
-package Model;
+package Model.Models;
 
 public enum Gender {
     male,

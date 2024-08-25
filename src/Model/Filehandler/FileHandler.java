@@ -1,8 +1,8 @@
-package Filehandler;
+package Model.Filehandler;
 
 import java.io.*;
 
-public class FileHandler implements Writer{
+public class FileHandler implements Writer {
     private String filePath;
 
 @Override

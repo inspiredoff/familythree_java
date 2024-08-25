@@ -1,12 +1,13 @@
-package Service;
+package Model.Service;
 
-import Model.Entity;
+import Model.Models.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class OriginalDatabase<T extends Entity> {
+public abstract class OriginalDatabase<T extends Entity> implements Serializable {
     protected List<T> objectList;
 
     public OriginalDatabase() {

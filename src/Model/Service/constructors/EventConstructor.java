@@ -1,12 +1,12 @@
-package Service.constructors;
+package Model.Service.constructors;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import Model.Event.Event;
-import Model.Human.Human;
-import Model.Place.Place;
-import Service.InterEventConstructor;
+import Model.Models.Event.Event;
+import Model.Models.Human.Human;
+import Model.Models.Place.Place;
+import Model.Service.InterEventConstructor;
 
 public class EventConstructor implements InterEventConstructor {
     private int id;

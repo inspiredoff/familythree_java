@@ -1,8 +1,8 @@
-package Service.constructors;
+package Model.Service.constructors;
 
-import Model.Gender;
-import Model.Human.Human;
-import Service.InterPersonConstructor;
+import Model.Models.Gender;
+import Model.Models.Human.Human;
+import Model.Service.InterPersonConstructor;
 
 import java.time.LocalDate;
 import java.util.List;

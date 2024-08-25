@@ -1,15 +1,15 @@
-package Service.HumanDatabase;
+package Model.Service.HumanDatabase;
 
-import Model.Human.Human;
-import Service.Comparator.ComparatorHumanByAge;
-import Service.Comparator.ComparatorHumanById;
-import Service.Comparator.ComparatorHumanByName;
-import Service.OriginalDatabase;
+import Model.Models.Human.Human;
+import Model.Service.Comparator.ComparatorHumanByAge;
+import Model.Service.Comparator.ComparatorHumanById;
+import Model.Service.Comparator.ComparatorHumanByName;
+import Model.Service.OriginalDatabase;
 
 import java.io.Serializable;
 
 
-public class HumanDatabase extends OriginalDatabase<Human> implements Serializable {
+public class HumanDatabase extends OriginalDatabase<Human>{
 
 
     public HumanDatabase() {

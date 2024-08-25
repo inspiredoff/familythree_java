@@ -1,7 +1,7 @@
-package Service;
+package Model.Service;
 
-import Model.Event.Event;
-import Model.Human.Human;
+import Model.Models.Event.Event;
+import Model.Models.Human.Human;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,7 +1,7 @@
-package Model.Event;
-import Model.Entity;
-import Model.Human.Human;
-import Model.Place.Place;
+package Model.Models.Event;
+import Model.Models.Entity;
+import Model.Models.Human.Human;
+import Model.Models.Place.Place;
 
 import java.io.Serializable;
 import java.time.LocalDate;

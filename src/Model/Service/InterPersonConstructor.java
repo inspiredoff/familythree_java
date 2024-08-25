@@ -1,7 +1,7 @@
-package Service;
+package Model.Service;
 
-import Model.EntityPerson;
-import Model.Gender;
+import Model.Models.EntityPerson;
+import Model.Models.Gender;
 
 import java.time.LocalDate;
 

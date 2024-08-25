@@ -1,7 +1,7 @@
-package Model.Human;
+package Model.Models.Human;
 
-import Model.EntityPerson;
-import Model.Gender;
+import Model.Models.EntityPerson;
+import Model.Models.Gender;
 
 import java.io.Serializable;
 import java.time.LocalDate;

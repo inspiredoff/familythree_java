@@ -1,5 +1,5 @@
-import Model.Gender;
-import Service.Service;
+import Model.Models.Gender;
+import Model.Service.Service;
 
 import java.time.LocalDate;
 
