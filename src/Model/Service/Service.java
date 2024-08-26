@@ -34,9 +34,15 @@ public class Service {
 //        this.humanDb.getFamilyTree(familyTreeId);
 //
 //    }
-public void createNewTree() {
-    this.familyTreeid++;
+    public void createNewTree() {
+
+        this.familyTreeid++;
     }
+
+    public void SetCurrentTree(int familyTreeId) {
+        this.familyTreeid = familyTreeId;
+    }
+
 
 
 //createHuman
@@ -92,11 +98,23 @@ public void createNewTree() {
 // print
 
     public void printFamilyTreeHuman() {
-        System.out.println(this.humanDb.getFamilyTree(familyTreeid));
+        for (Human human : this.humanDb.getFamilyTree(familyTreeid)) {
+            System.out.println(human);
+        }
     }
 
     public void printEventInFamilyTree() {
-        System.out.println(this.eventDb.getFamilyTree(familyTreeid));
+        for (Event event : this.eventDb.getFamilyTree(familyTreeid)) {
+            System.out.println(event);
+        }
+    }
+
+    public void PrintCurentHuman(int humanId) {
+        System.out.println((Human) this.humanDb.getById(humanId));
+    }
+
+    public void PrintCurentEvent(int eventId) {
+        System.out.println((Event) this.eventDb.getById(eventId));
     }
 
 // sort

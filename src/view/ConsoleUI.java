@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
+import Model.Models.FamilyTreeName.FamilyTree;
 import Model.Models.Gender;
 import presenter.Presenter;
 
@@ -30,8 +31,8 @@ public class ConsoleUI implements View{
 
     public void createNewTree(){
         System.out.println("input name Family Tree");
-        printMenu(humanMenu);
-        execute(humanMenu);
+        printMenu(familyTreeMenu);
+        execute(familyTreeMenu);
     }
 
     private LocalDate inputDate(){
