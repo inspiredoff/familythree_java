@@ -36,5 +36,9 @@ public class HumanDatabase extends OriginalDatabase<Human>{
     public void sortHumanById(){
         this.objectList.sort(new ComparatorHumanById() );
     }
+
+    public int getLastHuman() {
+        return this.objectList.get(this.objectList.size() - 1).getId();
+    }
 }
 

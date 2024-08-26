@@ -10,6 +10,6 @@ public class BornHuman extends Command {
 
     @Override
     public void execute() {
-        consoleUI.bornHuman();
+        consoleUI.BornHuman();
     }
 }

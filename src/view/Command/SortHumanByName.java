@@ -10,6 +10,6 @@ public class SortHumanByName extends Command {
 
     @Override
     public void execute() {
-        consoleUI.sortHumanByName();
+        consoleUI.SortHumanByName();
     }
 }

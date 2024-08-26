@@ -26,50 +26,69 @@ public class Presenter {
     }
 
 //create
-
-    public void createNewTree() {
-        service.createNewTree();
+    public void CreateNewTree(String familyTreeName) {
+        service.CreateNewTree(familyTreeName);
     }
 
-    public void bornHuman(String name, String surname, String patronymic, LocalDate birthday, String address, Gender gender) {
-        service.bornHuman(name, surname, patronymic, birthday, address, gender);
+    public int getLastHumanId(){
+        return service.getLastHuman();
     }
 
-    public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName) {
-        service.wendingHuman(wideId, husbandId, wendingDate, placeName);
+    public void SetCurrentFamilyTree(int familyTreeId){
+        service.SetCurrentTree(familyTreeId);
     }
 
-    public void diedHuman(int id, LocalDate deathDate, String placeName) {
-        service.deadHuman(id, deathDate, placeName);
+    public void BornHuman(String name, String lastname, String familyName, LocalDate birthday, String address, Gender gender) {
+        service.BornHuman(name, lastname, familyName, birthday, address, gender);
     }
 
-    public void updateEvent(int eventId, String event_name, LocalDate event_date, String placeName) {
-        service.updateEvent(eventId, event_name, event_date, placeName);
+    public void WendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName) {
+        service.WendingHuman(wideId, husbandId, wendingDate, placeName);
+    }
+
+    public void SetParent(int humanId, int fatherId, int motherId) {
+        service.SetParent(humanId, fatherId, motherId);
+    }
+
+    public void DiedHuman(int id, LocalDate deathDate, String placeName) {
+        service.DeadHuman(id, deathDate, placeName);
+    }
+
+    public void UpdateEvent(int eventId, String event_name, LocalDate event_date, String placeName) {
+        service.UpdateEvent(eventId, event_name, event_date, placeName);
     }
 
     //remove
 
     //print
 
-    public void printFamilyTreeHuman() {
-        service.printFamilyTreeHuman();
+    public void PrintFamilyTreeHuman() {
+        service.PrintFamilyTreeHuman();
     }
 
-    public void printEventInFamilyTree() {
-        service.printEventInFamilyTree();
+    public void PrintEventInFamilyTree() {
+        service.PrintEventInFamilyTree();
+    }
+
+    public void PrintCurrentHuman(int humanId){
+        service.PrintCurentHuman(humanId);
+    }
+
+    public void PrintCurrentEvent(int eventId){
+        service.PrintCurentEvent(eventId);
     }
 
     //sort
     public void sortHumanByName() {
-        service.sortHumanByName();
+        service.SortHumanByName();
     }
 
-    public void sortHumanByAge() {
-        service.sortHumanByAge();
+    public void SortHumanByAge() {
+        service.SortHumanByAge();
     }
 
-    public void sortHumanById() {
-        service.sortHumanById();
+    public void SortHumanById() {
+        service.SortHumanById();
     }
 
     //save load
@@ -79,6 +98,6 @@ public class Presenter {
     }
 
     public void LoadFamilyTree(String filePatch) {
-        service.loadFamilyTree(filePatch);
+        service.LoadFamilyTree(filePatch);
     }
 }

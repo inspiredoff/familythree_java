@@ -11,6 +11,6 @@ public class WendingHuman extends Command {
 
     @Override
     public void execute() {
-        consoleUI.wendingHuman();
+        consoleUI.WendingHuman();
     }
 }

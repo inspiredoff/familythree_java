@@ -10,6 +10,6 @@ public class DiedHuman extends Command{
 
     @Override
     public void execute() {
-        consoleUI.diedHuman();
+        consoleUI.DiedHuman();
     }
 }

@@ -10,6 +10,6 @@ public class LoadFamilyTree extends Command {
 
     @Override
     public void execute() {
-        consoleUI.loadFamilyTree();
+        consoleUI.LoadFamilyTree();
     }
 }

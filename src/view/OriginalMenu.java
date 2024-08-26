@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OriginalMenu {
 
-    List<Command> commandList;
+    protected List<Command> commandList;
 
     public OriginalMenu(ConsoleUI consoleUI){
         commandList = new ArrayList<>();

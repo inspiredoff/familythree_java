@@ -10,6 +10,6 @@ public class CreateNewTree extends Command {
     }
     @Override
     public void execute() {
-        consoleUI.createNewTree();
+        consoleUI.CreateNewTree();
     }
 }

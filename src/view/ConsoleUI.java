@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
-import Model.Models.FamilyTreeName.FamilyTree;
 import Model.Models.Gender;
 import presenter.Presenter;
+import view.Menu.MainMenu;
+import view.Menu.MenuFamilytree;
+import view.Menu.MenuHuman;
 
 public class ConsoleUI implements View{
 
@@ -29,10 +31,20 @@ public class ConsoleUI implements View{
         this.humanMenu = new MenuHuman(this);
     }
 
-    public void createNewTree(){
+    public void CreateNewTree(){
         System.out.println("input name Family Tree");
+        String nameFamilyTree = scanner.nextLine();
+        presenter.CreateNewTree(nameFamilyTree);
         printMenu(familyTreeMenu);
         execute(familyTreeMenu);
+    }
+
+    public void SetCurrentFamilyTree(){
+        System.out.println("input family tree id");
+        String familyTreeIdString = scanner.nextLine();
+        int familyTreeId = Integer.parseInt(familyTreeIdString);
+        presenter.SetCurrentFamilyTree(familyTreeId);
+
     }
 
     private LocalDate inputDate(){
@@ -48,7 +60,7 @@ public class ConsoleUI implements View{
         return LocalDate.of(year, mounth, day);
     }
 
-    public void bornHuman(){
+    public void BornHuman(){
         System.out.println("input first name");
         String firstName = scanner.nextLine();
         System.out.println("input last name");
@@ -60,10 +72,26 @@ public class ConsoleUI implements View{
         String placename = scanner.nextLine();
         System.out.println("input gender");
         Gender gender = Gender.male;
-        presenter.bornHuman(firstName, lastName, familyName, birthday, placename, gender);
+        presenter.BornHuman(firstName, lastName, familyName, birthday, placename, gender);
+        presenter.PrintCurrentHuman(presenter.getLastHumanId());
+        printMenu(humanMenu);
+        execute(humanMenu);
     }
 
-    public void wendingHuman(){
+    public void SetParent(){
+        System.out.println("input human id");
+        String humanIdString = scanner.nextLine();
+        int humanId = Integer.parseInt(humanIdString);
+        System.out.println("input father id");
+        String fatherIdString = scanner.nextLine();
+        int fatherId = Integer.parseInt(fatherIdString);
+        System.out.println("input mother id");
+        String motherIdString = scanner.nextLine();
+        int motherId = Integer.parseInt(motherIdString);
+        presenter.SetParent(humanId, fatherId, motherId);
+    }
+
+    public void WendingHuman(){
         System.out.println("input wide id");
         String wideIdString = scanner.nextLine();
         int wideId = Integer.parseInt(wideIdString);
@@ -73,10 +101,10 @@ public class ConsoleUI implements View{
         LocalDate wendingDate = inputDate();
         System.out.println("input name place wending");
         String placeName = scanner.nextLine();
-        presenter.wendingHuman(wideId, husband, wendingDate, placeName);
+        presenter.WendingHuman(wideId, husband, wendingDate, placeName);
     }
 
-    public void diedHuman(){
+    public void DiedHuman(){
         System.out.println("input human id");
         String humanIdStr = scanner.nextLine();
         int humanId = Integer.parseInt(humanIdStr);
@@ -84,29 +112,41 @@ public class ConsoleUI implements View{
         LocalDate diedDate = inputDate();
         System.out.println("input name place died");
         String placeName = scanner.nextLine();
-        presenter.diedHuman(humanId, diedDate, placeName);
+        presenter.DiedHuman(humanId, diedDate, placeName);
     }
 
     public void PrintFamilyTreeHuman(){
-        presenter.printFamilyTreeHuman();
+        presenter.PrintFamilyTreeHuman();
     }
 
     public void PrintFamilyTreeEvent(){
-        presenter.printEventInFamilyTree();
+        presenter.PrintEventInFamilyTree();
     }
 
-    //TODO print curent Human in FamilyTree
+    public void PrintCurrentHuman(){
+        System.out.println("input human id");
+        String humanIdStr = scanner.nextLine();
+        int humanId = Integer.parseInt(humanIdStr);
+        presenter.PrintCurrentHuman(humanId);
+    }
 
-    public void sortHumanByName(){
+    public void PrintCurrentEvent(){
+        System.out.println("input event id");
+        String eventIdStr = scanner.nextLine();
+        int eventId = Integer.parseInt(eventIdStr);
+        presenter.PrintCurrentEvent(eventId);
+    }
+
+    public void SortHumanByName(){
         presenter.sortHumanByName();
     }
 
     public void SortHumanByAge(){
-        presenter.sortHumanByAge();
+        presenter.SortHumanByAge();
     }
 
-    public void sortHumanById(){
-        presenter.sortHumanById();
+    public void SortHumanById(){
+        presenter.SortHumanById();
     }
 
     public void SaveFamilyTree(){
@@ -117,7 +157,7 @@ public class ConsoleUI implements View{
         presenter.SaveFamilyTree(filepathHumanDb, filepathEventDb);
     }
 
-    public void loadFamilyTree(){
+    public void LoadFamilyTree(){
         System.out.println("input filepath humanDB");
         String filepathHumanDb = scanner.nextLine();
         System.out.println("input filepath EventDB");
@@ -187,8 +227,12 @@ public class ConsoleUI implements View{
     }
 
 
+    public void Exit() {
+        work = false;
+    }
 
-
-
-
+    public void BackToMainMenu() {
+        printMenu(mainMenu);
+        execute(mainMenu);
+    }
 }
