@@ -3,6 +3,8 @@ package presenter;
 import Model.Models.Gender;
 import Model.Models.Event.Event;
 import Model.Models.Human.Human;
+import Model.Service.EventDatabase.EventDatabase;
+import Model.Service.HumanDatabase.HumanDatabase;
 import Model.Service.OriginalDatabase;
 import Model.Service.Service;
 import view.View;
@@ -12,11 +14,13 @@ import java.time.LocalDate;
 public class Presenter {
 
     private View view;
-    private Service service;
+    private final Service service;
     private OriginalDatabase<Human> humanDb;
     private OriginalDatabase<Event> eventDb;
 
     public Presenter(View view) {
+        this.humanDb = new HumanDatabase();
+        this.eventDb = new EventDatabase();
         this.view = view;
         this.service = new Service(humanDb, eventDb);
     }
@@ -56,7 +60,6 @@ public class Presenter {
     }
 
     //sort
-
     public void sortHumanByName() {
         service.sortHumanByName();
     }
@@ -78,5 +81,4 @@ public class Presenter {
     public void LoadFamilyTree(String filePatch) {
         service.loadFamilyTree(filePatch);
     }
-
 }

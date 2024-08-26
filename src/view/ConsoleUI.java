@@ -3,31 +3,35 @@ package view;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import Jline.console.ConsoleReader;
 
 import Model.Models.Gender;
 import presenter.Presenter;
 
 public class ConsoleUI implements View{
 
+    private static final String INPUT_ERROR = "Вы ввели неверное значение";
+
     private Scanner scanner;
     private Presenter presenter;
     private boolean work;
-    private MainMenu menu;
-    private PrintHuman humanMenu;
-    private PrintFamilytree familyTreeMenu;
+    private OriginalMenu mainMenu;
+    private OriginalMenu humanMenu;
+    private OriginalMenu familyTreeMenu;
 
 
     public ConsoleUI() {
         this.scanner = new Scanner(System.in);
         this.presenter = new Presenter(this);
         this.work = true;
-        this.menu = new MainMenu(this);
-        
+        this.mainMenu = new MainMenu(this);
+        this.familyTreeMenu = new MenuFamilytree(this);
+        this.humanMenu = new MenuHuman(this);
     }
 
     public void createNewTree(){
         System.out.println("input name Family Tree");
+        printMenu(humanMenu);
+        execute(humanMenu);
     }
 
     private LocalDate inputDate(){
@@ -123,14 +127,66 @@ public class ConsoleUI implements View{
 
     @Override
     public void PrintAnswer(String text) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'PrintAnswer'");
+        System.out.println(text);
     }
 
     @Override
     public void start() {
-  
+        while (work) {
+            printMenu(mainMenu);
+            execute(mainMenu);
+        }
     }
+
+    public void execute(OriginalMenu originalMenu){
+        String line = scanner.nextLine();
+        if (
+                checkTextForInt(line)){
+            int numCommand = Integer.parseInt(line);
+            if (checkCommand(numCommand, originalMenu)) {
+                System.out.println("\033[2J\033[H");
+                originalMenu.execute(numCommand);
+            }
+        }
+    }
+
+    private boolean checkTextForInt(String text){
+        if (text.matches("[0-9]+")){
+            return true;
+        } else {
+            inputError();
+            return false;
+        }
+    }
+
+    private boolean checkCommand(int numCommand, OriginalMenu originalMenu){
+        if (numCommand <= originalMenu.getSize()){
+            return true;
+        } else {
+            inputError();
+            return false;
+        }
+    }
+
+    private void printMenu(OriginalMenu originalMenu){
+        System.out.println(originalMenu.menu());
+    }
+
+    private void printFamilyTreeMenu(){
+        System.out.println(familyTreeMenu.menu());
+    }
+
+    private void printHumanMenu(){
+        System.out.println(humanMenu.menu());
+    }
+
+
+    private void inputError(){
+        System.out.println(INPUT_ERROR);
+    }
+
+
+
 
 
 

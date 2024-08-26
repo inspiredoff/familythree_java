@@ -1,15 +1,18 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.List;
+import view.Command.CreateNewTree;
+import view.Command.LoadFamilyTree;
+import view.Command.SaveFamilyTree;
 
-public class MainMenu {
+public class MainMenu extends OriginalMenu {
 
-    private List<Command> comadList;
-
-    public MainMenu(ConsoleUI consoleUI){
-        this.comadList = new ArrayList<>();
+    public MainMenu(ConsoleUI consoleUI) {
+        super(consoleUI);
+        this.commandList.add(new CreateNewTree(consoleUI));
+        this.commandList.add(new SaveFamilyTree(consoleUI));
+        this.commandList.add(new LoadFamilyTree(consoleUI));
     }
-
-    public 
 }
+
+
+
