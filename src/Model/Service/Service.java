@@ -10,6 +10,7 @@ import Model.Service.constructors.EventConstructor;
 import Model.Service.constructors.PersonConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Service {
 
@@ -19,11 +20,12 @@ public class Service {
     private InterPersonConstructor<Human> humanConstructor;
     private InterEventConstructor eventConstructor;
 
-    public Service() {
+    public Service(OriginalDatabase<Human> humanDb, OriginalDatabase<Event> eventDb) {
         this.humanConstructor = new PersonConstructor();
         this.eventConstructor = new EventConstructor();
-        this.humanDb = new HumanDatabase();
-        this.eventDb = new EventDatabase();
+        this.humanDb = humanDb;
+        this.eventDb = eventDb;
+
     }
 
 // create FamilyTree
@@ -38,8 +40,6 @@ public void createNewTree() {
 
 
 //createHuman
-
-
     public void bornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Gender gender) {
         Human human = humanConstructor.newEntity(firstName, lastName, familyName, gender, this.familyTreeid)
                                 .setBirthDate(birthDate)
@@ -58,8 +58,7 @@ public void createNewTree() {
                             .build();
         this.humanConstructor.newEntity(father).setChildren(human).build();
         this.humanConstructor.newEntity(mother).setChildren(human).build();
-//         System.out.println(familyTreeService.getBornEventByHuman(humanId));
-//         this.eventConstructor.updateEvent(familyTreeService.getBornEventByHuman(humanId), null, null, null, father, mother);
+        this.eventConstructor.updateEvent(((EventDatabase) eventDb).getBornEventByHuman(human), null, null, null, father, mother);
     }
 
     public void wendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName) {
@@ -69,10 +68,10 @@ public void createNewTree() {
         this.eventDb.addEntity(event);
     }
 
-    public void deadHuman(int humanId, LocalDate deathDate, String placeName, int familyTreeId){
+    public void deadHuman(int humanId, LocalDate deathDate, String placeName){
         Human human = (Human) this.humanDb.getById(humanId);
         this.humanConstructor.newEntity(human).setDeathDate(deathDate).build();
-        Event event = eventConstructor.deadEvent(deathDate, placeName,familyTreeId, human);
+        Event event = eventConstructor.deadEvent(deathDate, placeName,familyTreeid, human);
         this.eventDb.addEntity(event);
     }
 
@@ -80,7 +79,14 @@ public void createNewTree() {
         this.eventConstructor.updateEvent((Event) this.eventDb.getById(eventId), event_name, event_date, placeName);
     }
 
+    public void createEvent(String eventName, LocalDate eventDate, String eventPlace, Human...persons){
+        Event event = this.eventConstructor.newEvent(eventName, eventDate, eventPlace, familyTreeid, List.of(persons));
+        this.eventDb.addEntity(event);
+    }
+
 // remove
+
+
 
 
 // print
@@ -98,23 +104,20 @@ public void createNewTree() {
         ((HumanDatabase) this.humanDb).sortHumanByName();
     }
 
-    public void sortHumanByAge() {
-        ((HumanDatabase) this.humanDb).sortHumanByAge();
+    public void sortHumanByAge() {((HumanDatabase) this.humanDb).sortHumanByAge();
     }
 
     public void sortHumanById() {
-        this.humanDb.sortHumanById();
+        ((HumanDatabase) this.humanDb).sortHumanById();
     }
 // save load
-    public void saveFamilyTree(String filePatchHumandb, String filePatchEventdb, Integer familyTreeId) {
-        HumanDatabase humanDatabase = (HumanDatabase) this.humanDb.getFamilyTree(familyTreeId);
-        EventDatabase eventDatabase = (EventDatabase) this.eventDb.getFamilyTree(familyTreeId);
+    public void SaveFamilyTree(String filePatchHumandb, String filePatchEventdb) {
         FileHandler fileHandler = new FileHandler();
         fileHandler.setFilePath(filePatchHumandb);
-        fileHandler.write(humanDatabase);
+        fileHandler.write((HumanDatabase) this.humanDb.getFamilyTree(familyTreeid));
         FileHandler fileHandlerEvent = new FileHandler();
         fileHandlerEvent.setFilePath(filePatchEventdb);
-        fileHandlerEvent.write(eventDatabase);
+        fileHandlerEvent.write((EventDatabase) this.eventDb.getFamilyTree(familyTreeid));
     }
 
     public void loadFamilyTree (String filePatch){

@@ -1,6 +1,9 @@
 package presenter;
 
 import Model.Models.Gender;
+import Model.Models.Event.Event;
+import Model.Models.Human.Human;
+import Model.Service.OriginalDatabase;
 import Model.Service.Service;
 import view.View;
 
@@ -10,10 +13,12 @@ public class Presenter {
 
     private View view;
     private Service service;
+    private OriginalDatabase<Human> humanDb;
+    private OriginalDatabase<Event> eventDb;
 
     public Presenter(View view) {
         this.view = view;
-        this.service = new Service();
+        this.service = new Service(humanDb, eventDb);
     }
 
 //create
@@ -30,8 +35,8 @@ public class Presenter {
         service.wendingHuman(wideId, husbandId, wendingDate, placeName);
     }
 
-    public void diedHuman(int id, LocalDate deathDate) {
-        service.deadHuman(id, deathDate, "", 0);
+    public void diedHuman(int id, LocalDate deathDate, String placeName) {
+        service.deadHuman(id, deathDate, placeName);
     }
 
     public void updateEvent(int eventId, String event_name, LocalDate event_date, String placeName) {
@@ -66,11 +71,11 @@ public class Presenter {
 
     //save load
 
-    public void saveFamilyTree(String filePatchHuman, String filePatchEvent, Integer familyTreeId) {
-        service.saveFamilyTree(filePatchHuman, filePatchEvent, familyTreeId);
+    public void SaveFamilyTree(String filePatchHuman, String filePatchEvent) {
+        service.SaveFamilyTree(filePatchHuman, filePatchEvent);
     }
 
-    public void loadFamilyTree(String filePatch) {
+    public void LoadFamilyTree(String filePatch) {
         service.loadFamilyTree(filePatch);
     }
 

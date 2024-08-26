@@ -1,4 +1,6 @@
 package view;
 
-public class View {
+public interface View {
+    void PrintAnswer(String text);
+    void start();
 }

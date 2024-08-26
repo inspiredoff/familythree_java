@@ -1,12 +1,12 @@
 package Model.Service.HumanDatabase;
 
+import Model.Models.Entity;
+import Model.Models.EntityPerson;
 import Model.Models.Human.Human;
 import Model.Service.Comparator.ComparatorHumanByAge;
 import Model.Service.Comparator.ComparatorHumanById;
 import Model.Service.Comparator.ComparatorHumanByName;
 import Model.Service.OriginalDatabase;
-
-import java.io.Serializable;
 
 
 public class HumanDatabase extends OriginalDatabase<Human>{

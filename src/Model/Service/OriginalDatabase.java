@@ -48,10 +48,4 @@ public abstract class OriginalDatabase<T extends Entity> implements Serializable
         }
         return list;
     }
-
-    public void sortHumanById() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sortHumanById'");
-    }
-    
 }
