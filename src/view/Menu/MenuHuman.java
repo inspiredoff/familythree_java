@@ -14,6 +14,6 @@ public class MenuHuman extends OriginalMenu {
         this.commandList.add(new DiedHuman(consoleUI));
         this.commandList.add(new SetParrent(consoleUI));
         this.commandList.add(new WendingHuman(consoleUI));
-        this.commandList.add(new BackToMainMenu(consoleUI));
+        this.commandList.add(new BackToTreeMenu(consoleUI));
     }
 }

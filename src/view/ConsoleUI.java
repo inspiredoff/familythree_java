@@ -235,4 +235,10 @@ public class ConsoleUI implements View{
         printMenu(mainMenu);
         execute(mainMenu);
     }
+
+    public void backTreeMenu() {
+        printMenu(familyTreeMenu);
+        execute(familyTreeMenu);
+    }
+
 }
