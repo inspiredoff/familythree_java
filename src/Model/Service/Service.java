@@ -17,42 +17,37 @@ public class Service {
 
     private OriginalDatabase<Human> humanDb;
     private OriginalDatabase<Event> eventDb;
-    private int familyTreeid;
+    private InterFamilyTreeNameDb familyTree;
     private InterPersonConstructor<Human> humanConstructor;
     private InterEventConstructor eventConstructor;
-    private FamilyTreeNameDatabase familyTreeNameDatabase;
+//    private FamilyTreeNameDatabase familyTreeNameDatabase;
 
-    public Service(OriginalDatabase<Human> humanDb, OriginalDatabase<Event> eventDb) {
+    public Service(OriginalDatabase<Human> humanDb, OriginalDatabase<Event> eventDb, InterFamilyTreeNameDb familyTree) {
         this.humanConstructor = new PersonConstructor();
         this.eventConstructor = new EventConstructor();
         this.humanDb = humanDb;
         this.eventDb = eventDb;
-        this.familyTreeNameDatabase = new FamilyTreeNameDatabase();
+        this.familyTree = familyTree;
 
     }
 
 // create FamilyTree
-//    public void setFamilyTree(int familyTreeId)
-//    {
-//        this.humanDb.getFamilyTree(familyTreeId);
-//
-//    }
+
     public void CreateNewTree(String familyTreeName) {
-        this.familyTreeNameDatabase.addFamilyTree(this.familyTreeid++, familyTreeName);
+        this.familyTree.addFamilyTree(familyTreeName);
     }
 
     public void SetCurrentTree(int familyTreeId) {
-        this.familyTreeid = familyTreeId;
+        this.familyTree.setFamilyTreeId(familyTreeId);
     }
-
-
 
 //createHuman
     public void BornHuman(String firstName, String lastName, String familyName, LocalDate birthDate, String placeName, Gender gender) {
-        Human human = humanConstructor.newEntity(firstName, lastName, familyName, gender, this.familyTreeid)
+        int familyTreeid = this.familyTree.getFamilyTreeId();
+        Human human = humanConstructor.newEntity(firstName, lastName, familyName, gender, familyTreeid)
                                 .setBirthDate(birthDate)
                                 .build();
-        Event event = eventConstructor.bornEvent(birthDate, placeName, this.familyTreeid, human);
+        Event event = eventConstructor.bornEvent(birthDate, placeName, familyTreeid, human);
         this.humanDb.addEntity(human);
         this.eventDb.addEntity(event);
     }
@@ -70,13 +65,15 @@ public class Service {
     }
 
     public void WendingHuman(int wideId, int husbandId, LocalDate wendingDate, String placeName) {
+        int familyTreeid = this.familyTree.getFamilyTreeId();
         Human wife = (Human) this.humanDb.getById(wideId);
         Human husband = (Human) this.humanDb.getById(husbandId);
-        Event event = this.eventConstructor.wendingEvent(wendingDate, placeName, this.familyTreeid, wife, husband);
+        Event event = this.eventConstructor.wendingEvent(wendingDate, placeName, familyTreeid, wife, husband);
         this.eventDb.addEntity(event);
     }
 
     public void DeadHuman(int humanId, LocalDate deathDate, String placeName){
+        int familyTreeid = this.familyTree.getFamilyTreeId();
         Human human = (Human) this.humanDb.getById(humanId);
         this.humanConstructor.newEntity(human).setDeathDate(deathDate).build();
         Event event = eventConstructor.deadEvent(deathDate, placeName,familyTreeid, human);
@@ -88,6 +85,7 @@ public class Service {
     }
 
     public void CreateEvent(String eventName, LocalDate eventDate, String eventPlace, Human...persons){
+        int familyTreeid = this.familyTree.getFamilyTreeId();
         Event event = this.eventConstructor.newEvent(eventName, eventDate, eventPlace, familyTreeid, List.of(persons));
         this.eventDb.addEntity(event);
     }
@@ -104,16 +102,18 @@ public class Service {
 // print
 
     public void PrintFamilyTreeHuman() {
-        System.out.println(this.familyTreeid);
-        System.out.println(this.familyTreeNameDatabase.getFamilyTreeNameById(this.familyTreeid));
+        int familyTreeid = this.familyTree.getFamilyTreeId();
+        System.out.println(familyTreeid);
+        System.out.println(this.familyTree.getFamilyTreeNameById(familyTreeid));
         for (Human human : this.humanDb.getFamilyTree(familyTreeid)) {
             System.out.println(human);
         }
     }
 
     public void PrintEventInFamilyTree() {
-        System.out.println(this.familyTreeid);
-        System.out.println(this.familyTreeNameDatabase.getFamilyTreeNameById(this.familyTreeid));
+        int familyTreeid = this.familyTree.getFamilyTreeId();
+        System.out.println(familyTreeid);
+        System.out.println(this.familyTree.getFamilyTreeNameById(familyTreeid));
         for (Event event : this.eventDb.getFamilyTree(familyTreeid)) {
             System.out.println(event);
         }
@@ -140,6 +140,7 @@ public class Service {
     }
 // save load
     public void SaveFamilyTree(String filePatchHumandb, String filePatchEventdb) {
+        int familyTreeid = this.familyTree.getFamilyTreeId();
         FileHandler fileHandler = new FileHandler();
         fileHandler.setFilePath(filePatchHumandb);
         fileHandler.write((HumanDatabase) this.humanDb.getFamilyTree(familyTreeid));
