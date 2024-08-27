@@ -4,7 +4,9 @@ import Model.Models.Gender;
 import Model.Models.Event.Event;
 import Model.Models.Human.Human;
 import Model.Service.EventDatabase.EventDatabase;
+import Model.Service.FamilyTreeNameDatabase.FamilyTreeNameDatabase;
 import Model.Service.HumanDatabase.HumanDatabase;
+import Model.Service.InterFamilyTreeNameDb;
 import Model.Service.OriginalDatabase;
 import Model.Service.Service;
 import view.View;
@@ -15,14 +17,14 @@ public class Presenter {
 
     private View view;
     private final Service service;
-    private OriginalDatabase<Human> humanDb;
-    private OriginalDatabase<Event> eventDb;
+
 
     public Presenter(View view) {
-        this.humanDb = new HumanDatabase();
-        this.eventDb = new EventDatabase();
+        OriginalDatabase<Human> humanDb = new HumanDatabase();
+        OriginalDatabase<Event> eventDb = new EventDatabase();
+        InterFamilyTreeNameDb familyTreeDb = new FamilyTreeNameDatabase();
         this.view = view;
-        this.service = new Service(humanDb, eventDb);
+        this.service = new Service(humanDb, eventDb, familyTreeDb);
     }
 
 //create
